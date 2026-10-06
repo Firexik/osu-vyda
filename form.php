@@ -15,7 +15,6 @@
 
 <h1>Registrační formulář</h1>
 
-
 <?php
 
 
@@ -24,7 +23,6 @@ if (isset($_POST['submit'])) {
     echo '<div class="alert alert-success" role="alert">'."\n";
       echo '<p class="text-center">Jméno: '.$_POST['firstname'].'</p>'."\n";
       echo '<p class="text-center">Příjmení: '.$_POST['surname'].'</p>'."\n";
-    echo '<p class="text-center">Kraj: '.$regions[$_POST['region']].'</p>'."\n";
     echo '</div>'."\n"; 
 } else {
   ?>
