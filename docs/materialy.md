@@ -33,4 +33,3 @@ Zdroj: kurz KIP/7VYDA v Moodlu, export 12. 10. 2026.
 - [Logo projektu inovace výuky](materialy/logo-inovace.png) — obrázek z úvodu kurzu.
 
 SQL soubor je archivován beze změny obsahu s příponou .sql.txt jako textový studijní podklad.
-

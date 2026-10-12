@@ -333,5 +333,3 @@ Soubor
 
 Vzorové příklady XVYDA a 2VYDA
 Není dostupné
-
-

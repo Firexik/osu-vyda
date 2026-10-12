@@ -1,0 +1,2 @@
+# Zachovat puvodni bajty SQL studijniho podkladu a jeho kontrolni soucet.
+*.sql.txt -text
