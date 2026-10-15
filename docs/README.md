@@ -2,6 +2,16 @@
 
 Studijní podklady pro ZS 2026/2027, Ostravská univerzita. Export z přihlášeného [kurzu v Moodlu](https://moodle.osu.cz/course/view.php?id=12051) ze dne **12. 10. 2026**. V úvodu kurzu je uveden RNDr. Bogdan Walek, Ph.D.
 
+## Řešení úkolu 2
+
+Samostatný skript [ukol2.php](../ukol2.php) obsahuje obě funkce a demonstrační výpisy. Stránka používá pouze základní HTML a výpisy přes `echo` a `print_r`, bez tabulek a CSS. Funkce `format_youtube_url($url)` je napsaná na jednom řádku pomocí `str_replace` a převádí zadaný tvar `https://www.youtube.com/watch?v=...` na `https://www.youtube.com/embed/...`. Funkce `get_working_days($from, $to)` vrací pole dat od pondělí do pátku včetně obou hranic intervalu; svátky nevynechává. Ukázky zahrnují tři YouTube adresy, všechny tři intervaly z přiloženého zadání a samostatný víkend s prázdným výsledkem.
+
+Spuštění v místním XAMPP: zapnout Apache a otevřít [localhost/vyda/ukol2.php](http://localhost/vyda/ukol2.php). Alternativně z kořene projektu spustit `php -S 127.0.0.1:8000` a otevřít `http://127.0.0.1:8000/ukol2.php`. Funkce a ukázková data se upravují přímo v `ukol2.php`; původní cvičení v `index.php` a `form.php` zůstávají zachována.
+
+Ověřeno dne **15. 10. 2026**: kontrola syntaxe `php -l ukol2.php` v PHP 8.2.12, 13 kontrol funkcí (včetně přesného příkladu, jednodenních a obrácených intervalů, víkendu, přelomu roku, přestupného dne a změn času) a výstup skriptu přes HTTP. Všechny tři dvojice YouTube adres a úplné výpisy čtyř polí odpovídají očekávaným výsledkům; intervaly mají postupně 6, 22, 15 a 0 pracovních dnů. Kontrola potvrdila také jednořádkový zápis první funkce.
+
+Podkladem je [vyda-ukol-2.pdf](materialy/vyda-ukol-2.pdf), příloha dodaná uživatelem dne **15. 10. 2026** pod tímto původním názvem. Jde o aktuální zadání s funkcemi `format_youtube_url` a `get_working_days` a příklady pro rok 2026. Archivní `materialy/ukol2.pdf` i korespondenční úkol 2 z exportu Moodlu jsou samostatné podklady a nebyly přepsány.
+
 ## Orientace v podkladech
 
 - [Výpis celé stránky kurzu](kurz.md) — text všech 17 viditelných sekcí, cíle kapitol, průvodce studiem, shrnutí a kontrolní otázky.
