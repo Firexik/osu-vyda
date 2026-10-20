@@ -3,14 +3,16 @@ declare(strict_types=1);
 
 date_default_timezone_set('Europe/Prague');
 
-function format_youtube_url($url) { return str_replace('watch?v=', 'embed/', $url); }
+function format_youtube_url($url){
+    return str_replace('watch?v=', 'embed/', $url);
+}
 
 function get_working_days($from, $to) {
     $workingDays = [];
     $lastDay = strtotime($to);
 
     for ($day = strtotime($from); $day <= $lastDay; $day = strtotime('+1 day', $day)) {
-        // Pondělí má číslo 1, neděle 7.
+        // Pondělí je 1, neděle 7
         if (date('N', $day) <= 5) {
             $workingDays[] = date('Y-m-d', $day);
         }
