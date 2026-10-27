@@ -4,37 +4,13 @@ Studijní podklady pro ZS 2026/2027, Ostravská univerzita. Export z přihláše
 
 ## Řešení úkolu 3
 
-Řešení vzniklo ve větvi `ukol3` z `cv5-27.10.2026`; podkladem polí je rozšířený `form.php` z větve `ukol1`. Nová stránka [prehled-studentu.php](../prehled-studentu.php) vypisuje všechny studenty v jedné responzivní Bootstrap tabulce. Původní `students.php`, `html/htmlHead.php` i `html/htmlFoot.php` zůstávají zachované. Nové stránky používají vlastní šablony `html/ukol3Head.php` a `html/ukol3Foot.php`. Zadání se neukládá do `ukol3.txt`.
+Nová stránka [prehled-studentu.php](../prehled-studentu.php) obsahuje pouze Bootstrap tabulku s pěti studenty. Kraje vypisuje názvem pomocí `INNER JOIN` s tabulkou `regions`. Pole pro rozšíření databáze vycházejí z `form.php` ve větvi `ukol1`; soubory `form.php` a `students.php` v této větvi zůstávají původní. Hesla jsou v databázi uložená jako hashe a v přehledu se nevypisují.
 
-### Spuštění a databáze v phpMyAdminu
+Spuštění: zapnout Apache a MySQL v XAMPP a otevřít [localhost/vyda/prehled-studentu.php](http://localhost/vyda/prehled-studentu.php). V místní databázi `test` je již pět úplných záznamů a všech 14 krajů s cizím klíčem `students.region_id → regions.id`. Údaje se spravují v [phpMyAdminu](http://localhost/phpmyadmin/).
 
-1. V XAMPP zapnout Apache a MySQL.
-2. Pro nové prostředí v [phpMyAdminu](http://localhost/phpmyadmin/) vybrat databázi uvedenou v `config/.env` (místně `test`) a **jednou** importovat [database/ukol3.sql](../database/ukol3.sql). Skript je určen pro prázdnou databázi nebo výchozí tabulku `students` se sloupci `id`, `name`, `surname` a původními dvěma záznamy. Již rozšířenou databázi znovu neimportovat.
-3. Otevřít [přehled studentů](http://localhost/vyda/prehled-studentu.php), případně [registrační formulář](http://localhost/vyda/form.php).
+Pro nové prostředí v phpMyAdminu vybrat databázi podle `config/.env` a **jednou** importovat [database/ukol3.sql](../database/ukol3.sql). Skript je určen pro prázdnou databázi nebo původní `students (id, name, surname)` se dvěma studenty. Již rozšířenou databázi znovu neimportovat. Ukázkové kontakty a adresy jsou smyšlené; ukázkové heslo je `Student123!`. `ukol3.txt` není součástí řešení.
 
-V místní databázi `test` byl import již proveden přes webové rozhraní phpMyAdminu dne **27. 10. 2026**. Obsahuje 14 krajů a pět plně vyplněných studentů. Původní Petr a Pavel Novákovi s ID 1 a 2 jsou doplněni o nové údaje; další tři záznamy jsou Jana Svobodová, Tomáš Dvořák a Eva Černá. Ukázkové kontakty a adresy jsou smyšlené. Připojení se upravuje v `config/.env`, jehož cestu `EnvReader.php` vyhodnocuje podle umístění souboru, a používá `utf8mb4` pro české znaky.
-
-### Pole a datové typy
-
-| Pole formuláře | Sloupec v `students` | Datový typ |
-| --- | --- | --- |
-| Jméno (`firstname`) | `name` | `VARCHAR(50)`, původní sloupec |
-| Příjmení | `surname` | `VARCHAR(50)`, původní sloupec |
-| E-mail | `email` | `VARCHAR(254)`, jedinečný |
-| Heslo | `password` | `VARCHAR(255)`, hash z `password_hash` |
-| Potvrzení hesla | neukládá se | Pouze kontrola shody s heslem |
-| Ulice a č.p. | `street` | `VARCHAR(150)` |
-| Město | `city` | `VARCHAR(100)` |
-| PSČ | `zip` | `CHAR(5)`, zachová i počáteční nuly |
-| Kraj | `region_id` | `TINYINT UNSIGNED`, cizí klíč |
-| Pohlaví | `gender` | `ENUM('muz', 'zena')` |
-| Poznámka | `note` | `TEXT` |
-
-Tabulka `regions` má `id TINYINT UNSIGNED AUTO_INCREMENT` jako primární klíč a jedinečné `name VARCHAR(50)`. Relace vede z `students.region_id` do `regions.id`; databáze odmítá neexistující kraj a smazání používaného kraje. Formulář načítá možnosti z databáze, odesílá ID kraje a přehled pomocí `INNER JOIN` zobrazuje jeho název. Pohlaví se vypisuje jako Muž/Žena a PSČ ve tvaru `123 45`.
-
-`form.php` kontroluje povinné údaje, délky, e-mail, PSČ, platný kraj, shodu hesel a token formuláře. Údaje ukládá připraveným SQL dotazem. Po úspěchu vrací přesměrování HTTP 303 na nový přehled, který zvýrazní přidaného studenta; obnovení přehledu vložení neopakuje. Poznámka je při další registraci nepovinná. Heslo ani jeho hash se v přehledu nezobrazují; všech pět ukázkových hashů odpovídá demonstračnímu heslu `Student123!`. Přidáním dalšího studenta přes formulář počet záznamů přirozeně vzroste.
-
-Ověřeno dne **27. 10. 2026** v PHP 8.2.12 a MariaDB 10.4.32: syntaxe změněných PHP souborů a 15 kontrol nad skutečnou databází a HTTP. Kontroly zahrnuly počet a úplnost záznamů, načtení Bootstrapu, strukturu tabulky, výběr krajů, odmítnutí neplatných údajů a duplicitního e-mailu, vložení a přesměrování, diakritiku a apostrof, PSČ s počáteční nulou, hashování hesla, bezpečný výpis HTML, obnovení stránky a vynucení cizího klíče. Dočasný testovací student byl odstraněn; zůstalo přesně pět původních úplných záznamů. Vizuální kontrolu v prohlížeči se kvůli technickému omezení automatického ovládání nepodařilo provést.
+Ověřeno **27. 10. 2026**: syntaxe PHP, HTTP výpis jedné tabulky s pěti řádky a deseti sloupci, názvy krajů, načtení Bootstrapu a shoda `form.php` i `students.php` s původní větví.
 
 ## Řešení úkolu 2
 
