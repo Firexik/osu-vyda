@@ -1,4 +1,0 @@
-rozšířit tabulku students o sloupce které tam máme v form.php (datové typy podle toho formuláře jak to bude dávat smysl)
-po odeslání formuláře přesměrování na novou stránku kde budeme mít ty údaje pomocí bootstrapu krásně zobrazené v table
-nová tabulka regions s krajema (id, name) a v tabulce students bude cízí klíč do tabulky regions (standartní relace). v rámci selectu v formuláři budeme vybírat kraje, nebude se v tabulce vypisovat idčko ale hodnota toho id.
-děláme to přes phpmyadmin
