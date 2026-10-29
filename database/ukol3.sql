@@ -53,33 +53,33 @@ ALTER TABLE students
     ADD COLUMN gender ENUM('muz', 'zena') NULL;
 
 UPDATE students SET
-    email = 'petr.novak@example.com',
+    email = 'petr.novak@outlook.com',
     street = '17. listopadu 15', city = 'Ostrava', zip = '70800',
     region_id = 14, gender = 'muz'
 WHERE id = 1;
 
 UPDATE students SET
-    email = 'pavel.novak@example.com',
+    email = 'pavel.novak@gmail.com',
     street = 'Školní 12', city = 'Praha', zip = '11000',
     region_id = 1, gender = 'muz'
 WHERE id = 2;
 
 INSERT INTO students (id, name, surname, email, street, city, zip, region_id, gender) VALUES
-    (3, 'Jana', 'Svobodová', 'jana.svobodova@example.com',
+    (3, 'Jana', 'Svobodová', 'jana.svobodova@outlook.com',
      'Kounicova 20', 'Brno', '60200', 11, 'zena'),
-    (4, 'Tomáš', 'Dvořák', 'tomas.dvorak@example.com',
+    (4, 'Tomáš', 'Dvořák', 'tomas.dvorak@gmail.com',
      'Studentská 5', 'Olomouc', '77900', 12, 'muz'),
-    (5, 'Eva', 'Černá', 'eva.cerna@example.com',
+    (5, 'Eva', 'Černá', 'eva.cerna@outlook.com',
      'Dlouhá 8', 'Zlín', '76001', 13, 'zena'),
-    (6, 'Martin', 'Veselý', 'martin.vesely@example.com',
+    (6, 'Martin', 'Veselý', 'martin.vesely@gmail.com',
      'Jabloňová 14', 'Liberec', '46001', 7, 'muz'),
-    (7, 'Lucie', 'Procházková', 'lucie.prochazkova@example.com',
+    (7, 'Lucie', 'Procházková', 'lucie.prochazkova@outlook.com',
      'Lipová 6', 'České Budějovice', '37001', 3, 'zena'),
-    (8, 'Adam', 'Kučera', 'adam.kucera@example.com',
+    (8, 'Adam', 'Kučera', 'adam.kucera@gmail.com',
      'Dukelská 22', 'Plzeň', '30100', 4, 'muz'),
-    (9, 'Tereza', 'Novotná', 'tereza.novotna@example.com',
+    (9, 'Tereza', 'Novotná', 'tereza.novotna@outlook.com',
      'Husova 18', 'Hradec Králové', '50002', 8, 'zena'),
-    (10, 'Ondřej', 'Doležal', 'ondrej.dolezal@example.com',
+    (10, 'Ondřej', 'Doležal', 'ondrej.dolezal@gmail.com',
      'Smetanova 4', 'Pardubice', '53002', 9, 'muz');
 
 ALTER TABLE students
