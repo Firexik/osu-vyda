@@ -33,10 +33,3 @@ Zdroj: kurz KIP/7VYDA v Moodlu, export 12. 10. 2026.
 - [Logo projektu inovace výuky](materialy/logo-inovace.png) — obrázek z úvodu kurzu.
 
 SQL soubor je archivován beze změny obsahu s příponou .sql.txt jako textový studijní podklad.
-
-## Dodatečné podklady k úkolu 3
-
-Dodáno uživatelem dne **29. 10. 2026**, zdroj: zadání a příloha vyučujícího Waleka Bogdana na Discordu. Jde o další podklady mimo původní export Moodlu.
-
-- [Zadání úkolu ze cvičení](materialy/zadani-ukol-3-2026-10-29.png) — původní snímek `codex-clipboard-cf9fd103-bceb-497e-a501-765c283c53fb.png`, uložený beze změny obsahu pod popisným názvem.
-- [Vytvoření relace cizí a primární klíč v phpMyAdminu](materialy/vytvoreni-relace-cizi-primarni-klic-phpmyadmin.docx) — původní soubor `vytvoreni-relace-cizi-primarni-klic-phpmyadmin.docx`, zachovaný beze změn.

@@ -1,14 +1,21 @@
 <?php
 declare(strict_types=1);
 
-require_once __DIR__ . '/config/Database.php';
-
 $escape = static fn ($value): string => htmlspecialchars((string) $value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 $students = [];
 $error = null;
 
 try {
-    $connection = (new Database())->connect();
+    $config = parse_ini_file(__DIR__ . '/config/.env');
+    if ($config === false) {
+        throw new RuntimeException('Nepodařilo se načíst nastavení databáze.');
+    }
+    $connection = new PDO(
+        'mysql:host=' . $config['DB_HOST'] . ';dbname=' . $config['DB_NAME'] . ';charset=utf8mb4',
+        $config['DB_USER'],
+        $config['DB_PASSWORD'],
+        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+    );
     $statement = $connection->prepare(
         'SELECT s.id, s.name, s.surname, s.email, s.street, s.city, s.zip,
                 r.name AS region_name, s.gender
@@ -17,7 +24,7 @@ try {
          ORDER BY s.id'
     );
     $statement->execute();
-    $students = $statement->fetchAll();
+    $students = $statement->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException | RuntimeException $e) {
     error_log($e->getMessage());
     http_response_code(503);

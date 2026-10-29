@@ -2,20 +2,6 @@
 
 Studijní podklady pro ZS 2026/2027, Ostravská univerzita. Export z přihlášeného [kurzu v Moodlu](https://moodle.osu.cz/course/view.php?id=12051) ze dne **12. 10. 2026**. V úvodu kurzu je uveden RNDr. Bogdan Walek, Ph.D.
 
-## Řešení úkolu 3
-
-Řešení ve větvi `ukol3` navazuje na `cv5-27.10.2026` a odpovídá zadání učitele dodanému **29. 10. 2026**. Nová stránka [students-table.php](../students-table.php) vypisuje deset studentů v jednoduché Bootstrap tabulce. Původní `form.php`, `students.php` i společné HTML šablony zůstávají zachované; formulář slouží pouze jako podklad pro výběr atributů.
-
-K původním sloupcům `id`, `name`, `surname` jsou doplněny `email VARCHAR(254)`, `street VARCHAR(150)`, `city VARCHAR(100)`, `zip CHAR(5)`, `region_id TINYINT UNSIGNED` a `gender ENUM('muz', 'zena')`. Heslo, potvrzení hesla ani další atributy mimo učitelův seznam se neukládají. PSČ je text, aby zachovalo počáteční nuly. Přehled čte data postupem `prepare → execute → fetchAll` jako příklad ze cvičení a pomocí `INNER JOIN` vypisuje názvy krajů. Hodnoty se při výpisu ošetřují funkcí `htmlspecialchars`.
-
-Tabulka `regions` má primární klíč `id TINYINT UNSIGNED AUTO_INCREMENT`, jedinečné `name VARCHAR(50)` a všech 14 krajů. Cizí klíč vede z `students.region_id` do `regions.id`. V phpMyAdminu ho najdete v `test → students → Struktura → Zobrazení relací`: sloupec `region_id`, odkazovaná databáze `test`, tabulka `regions`, sloupec `id`. Jde o stejný postup jako v přiloženém návodu pro `orders.user_id → users.id`.
-
-Spuštění: zapnout Apache a MySQL v XAMPP a otevřít [localhost/vyda/students-table.php](http://localhost/vyda/students-table.php). V místní databázi `test` jsou již sloupce a data upravené přes phpMyAdmin. Pro nové prostředí vybrat databázi podle `config/.env` a **jednou** importovat [database/ukol3.sql](../database/ukol3.sql). Skript je určen pro prázdnou databázi nebo původní `students (id, name, surname)` se dvěma studenty. Již rozšířenou databázi znovu neimportovat. Údaje studentů jsou smyšlené. `ukol3.txt` není součástí řešení.
-
-Podklady od uživatele jsou zachované v původním obsahu: [zadání učitele](materialy/zadani-ukol-3-2026-10-29.png) a [návod na vytvoření relace v phpMyAdminu](materialy/vytvoreni-relace-cizi-primarni-klic-phpmyadmin.docx). Jejich původ a datum získání jsou v [katalogu materiálů](materialy.md).
-
-Ověřeno **29. 10. 2026**: syntaxe PHP, HTTP 200 a výpis jedné tabulky s deseti řádky a devíti sloupci, načtení Bootstrapu, názvy krajů a diakritika, úplnost všech deseti záznamů a 14 krajů. V oddělené dočasné databázi prošel import SQL do prázdného prostředí i nad původními dvěma studenty; obě varianty vytvořily stejná data jako místní databáze. Cizí klíč odmítl neexistující kraj. Dočasná databáze byla po kontrole odstraněna. Ověřena také shoda původních PHP souborů s větví cvičení a shodné SHA-256 dodaných příloh a jejich archivních kopií.
-
 ## Řešení úkolu 2
 
 Samostatný skript [ukol2.php](../ukol2.php) obsahuje obě funkce a demonstrační výpisy. Stránka používá pouze základní HTML a výpisy přes `echo` a `print_r`, bez tabulek a CSS. Funkce `format_youtube_url($url)` je napsaná na jednom řádku pomocí `str_replace` a převádí zadaný tvar `https://www.youtube.com/watch?v=...` na `https://www.youtube.com/embed/...`. Funkce `get_working_days($from, $to)` vrací pole dat od pondělí do pátku včetně obou hranic intervalu; svátky nevynechává. Ukázky zahrnují tři YouTube adresy, všechny tři intervaly z přiloženého zadání a samostatný víkend s prázdným výsledkem.
