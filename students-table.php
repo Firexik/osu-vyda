@@ -9,13 +9,15 @@ $error = null;
 
 try {
     $connection = (new Database())->connect();
-    $students = $connection->query(
+    $statement = $connection->prepare(
         'SELECT s.id, s.name, s.surname, s.email, s.street, s.city, s.zip,
-                r.name AS region_name, s.gender, s.note
+                r.name AS region_name, s.gender
          FROM students AS s
          INNER JOIN regions AS r ON s.region_id = r.id
          ORDER BY s.id'
-    )->fetchAll();
+    );
+    $statement->execute();
+    $students = $statement->fetchAll();
 } catch (PDOException | RuntimeException $e) {
     error_log($e->getMessage());
     http_response_code(503);
@@ -48,7 +50,6 @@ try {
                         <th scope="col">PSČ</th>
                         <th scope="col">Kraj</th>
                         <th scope="col">Pohlaví</th>
-                        <th scope="col">Poznámka</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,7 +64,6 @@ try {
                             <td class="text-nowrap"><?= $escape(substr($student['zip'], 0, 3) . ' ' . substr($student['zip'], 3)) ?></td>
                             <td><?= $escape($student['region_name']) ?></td>
                             <td><?= $student['gender'] === 'muz' ? 'Muž' : 'Žena' ?></td>
-                            <td><?= nl2br($escape($student['note'])) ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
