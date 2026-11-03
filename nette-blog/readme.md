@@ -100,3 +100,43 @@ php -S localhost:8000 -t www
 
 Potom otevřete <http://localhost:8000/>. Adresáře `app/`, `config/`, `log/`
 a `temp/` nesmějí být veřejně přístupné.
+
+
+Cvičení 6: úvodní stránka blogu
+-----------------------------
+
+Stav odpovídá kapitolám [Píšeme první aplikaci](https://doc.nette.org/cs/quickstart)
+a [Úvodní stránka blogu](https://doc.nette.org/cs/quickstart/home-page),
+probíraným na cvičení 3. 11. 2026. Aplikace načítá nejvýše pět nejnovějších
+příspěvků z tabulky `posts` a vykresluje je pomocí Latte. Rozsah cvičení končí
+u tohoto výpisu.
+
+`app/Presentation/Home/HomePresenter.php` získává `Nette\Database\Explorer`
+konstruktorem. Metoda `renderDefault()` předává články do šablony
+`app/Presentation/Home/default.latte`, která zobrazuje datum, název a náhled
+obsahu.
+
+Místní připojení používá již vytvořenou databázi `test` s tabulkou `posts`.
+V návodu se databáze jmenuje `quickstart`; v tomto projektu zůstává jméno
+zvolené při cvičení. Tabulka obsahuje sloupce `id`, `title`, `content`
+a `created_at`.
+
+Sdílené nastavení je v `config/common.neon`. Osobní přihlašovací údaje
+patří do ignorovaného `config/local.neon`, který Bootstrap načítá jako poslední.
+Na dalším počítači vytvořte tento soubor z příkladu a vyplňte vlastní přihlášení:
+
+```powershell
+Copy-Item config/local.neon.example config/local.neon
+composer install
+composer check-platform-reqs
+```
+
+Databázi a tabulku připravte podle uvedené kapitoly Nette. Na tomto počítači
+zůstávají zachované tři dosavadní články. Apache potřebuje zápis do `temp/`
+a `log/`; ve Windows nesmějí mít tyto složky a jejich podsložky atribut
+„Jen pro čtení“.
+
+Ověřeno 3. 11. 2026 na PHP 8.5.12: načtení přes
+<http://localhost/nette-blog/www/> s HTTP 200, shoda tří zobrazených článků
+s databází včetně pořadí, data a obsahu, syntaxe aplikačních PHP souborů
+a kontroly Composeru.

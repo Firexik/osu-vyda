@@ -1,0 +1,6 @@
+# Zkopírujte jako local.neon a vyplňte vlastní místní přihlášení.
+# Soubor local.neon je v .gitignore.
+database:
+	dsn: 'mysql:host=127.0.0.1;dbname=test'
+	user: test
+	password: 'doplnte-lokalni-heslo'

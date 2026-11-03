@@ -13,7 +13,7 @@ application:
 database:
 	dsn: 'mysql:host=127.0.0.1;dbname=test'
 	user: test
-	password: 7Re7GLQeOiYdz/m7
+	password:
 
 
 
