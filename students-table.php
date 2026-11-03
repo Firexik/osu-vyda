@@ -1,6 +1,5 @@
 <?php
 
-// Původní EnvReader hledá .env v aktuální složce.
 chdir(__DIR__ . '/config');
 require_once './Database.php';
 chdir(__DIR__);

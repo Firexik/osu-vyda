@@ -1,0 +1,19 @@
+# Závislosti se obnovují z composer.lock a případného package-lock.json.
+/vendor/
+/node_modules/
+
+# Provozní soubory; složky musí zůstat přítomné i po naklonování.
+/temp/*
+!/temp/.gitkeep
+/log/*
+!/log/.gitkeep
+
+# Lokální nastavení IDE a soukromá konfigurace.
+/.idea/
+/.env
+/.env.*
+!/.env.example
+!/.env.dist
+/config/local.neon
+/config/*.local.neon
+/config/local.*.neon
