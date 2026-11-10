@@ -17,6 +17,12 @@ database:
 
 
 
+# Ukázkový účet podle Nette Quickstartu pro místní výukový blog.
+security:
+	users:
+		admin: secret
+
+
 latte:
 	strictParsing: yes
 	extensions:

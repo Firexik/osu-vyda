@@ -84,11 +84,15 @@ Složky `temp/` a `log/` musí být zapisovatelné. V tomto lokálním prostřed
 je ověřené PHP 8.5.12 pro Apache i Composer; požadavky konkrétních závislostí
 ověříte příkazem `composer check-platform-reqs`.
 
-Na Jakubově počítači je hlavní pracovní kopie ve složce VYDA na OneDrivu.
-`C:\Users\jakub\xampp\htdocs\nette-blog` na tuto podsložku odkazuje pomocí
-Windows junction, takže se web otevírá na původní adrese:
+Na Jakubově počítači je hlavní pracovní kopie ve složce VYDA v Proton Drive.
+`C:\Users\jakub\xampp\htdocs\vyda` odkazuje na celý repozitář a
+`C:\Users\jakub\xampp\htdocs\nette-blog` na tuto podsložku pomocí Windows
+junction. Oba odkazy musí mířit na aktuální umístění projektu. Web se otevírá na adresách:
 
 - <http://localhost/nette-blog/www/>
+- <http://localhost/vyda/nette-blog/www/>
+
+Adresa s koncovým `index.php` přesměruje na úvodní stránku bez názvu souboru.
 
 Junction slouží pouze místnímu XAMPP a není součástí Gitu. Na jiném počítači
 lze nastavit vlastní Apache s veřejným kořenem `nette-blog/www`, případně
@@ -140,3 +144,50 @@ Ověřeno 3. 11. 2026 na PHP 8.5.12: načtení přes
 <http://localhost/nette-blog/www/> s HTTP 200, shoda tří zobrazených článků
 s databází včetně pořadí, data a obsahu, syntaxe aplikačních PHP souborů
 a kontroly Composeru.
+
+
+Cvičení 7: model a přihlašování
+------------------------------
+
+Implementováno podle kapitol [Model](https://doc.nette.org/cs/quickstart/model)
+a [Autentifikace](https://doc.nette.org/cs/quickstart/authentication).
+
+`app/Model/PostFacade.php` soustřeďuje výběr publikovaných článků. Metoda
+`getPublicArticles()` vyřazuje články s budoucím datem a řadí je od nejnovějšího.
+`HomePresenter` dostává fasádu konstruktorem a omezuje výpis na pět článků.
+Služba se registruje automaticky díky pravidlu `*Facade` v `config/services.neon`.
+
+Přihlášení je na `Sign:in`, odhlášení na `Sign:out`. Pro tento místní výukový
+blog je podle návodu připraven účet **admin**, heslo **secret**, v sekci
+`security.users` souboru `config/common.neon`. Místní přepsání údajů lze zadat
+do ignorovaného `config/local.neon`.
+
+`EditPresenter::startup()` povolí vytváření a úpravu článků jen přihlášenému
+uživateli, včetně přímého odeslání formuláře. Nepřihlášený návštěvník je
+přesměrován na přihlášení. Odkazy na vytvoření a úpravu článku se zobrazují
+pouze po přihlášení. Formulář přihlášení chrání CSRF token a při chybných
+údajích zobrazí obecnou chybovou zprávu. Čtení článků a komentáře zůstávají veřejné.
+
+Součástí blogu jsou také navazující stránky `Post:show`, `Edit:create`
+a `Edit:edit`. Pokud v místní databázi dosud chybí tabulka `comments`,
+naimportujte `database/comments.sql`. SQL soubor nevytváří ani nemaže články.
+Konfigurace databáze zůstává ve stávajících souborech `config/common.neon`
+a `config/local.neon`.
+
+Automatický test modelu používá SQLite v paměti a nemění místní MySQL databázi:
+
+```powershell
+composer run tester
+```
+
+Ověřeno 10. 11. 2026 na PHP 8.5.12: syntaxe PHP, všechny tři konfigurace
+NEON, deset Latte šablon a test modelu. Přes HTTP prošlo 25 kontrol na oddělené
+testovací databázi: řazení a omezení výpisu, skrytí budoucích článků, chybné
+přihlášení, CSRF, úspěšné přihlášení, vytvoření a úprava článku, odhlášení
+a opětovné zablokování editace. Skutečný místní XAMPP vrací HTTP 200 pro
+úvodní stránku se třemi stávajícími články i pro přihlašovací formulář.
+
+Typová kontrola `php vendor/bin/phpstan analyse app tests --level=8` hlásí
+14 původních diagnostik v dosavadních presenterech a LatteExtension. Porovnání
+se zdrojovým kódem před touto úpravou potvrdilo, že implementace nepřidala
+žádné nové hlášení. Výsledek PHPStanu tedy zatím není bez chyb.
