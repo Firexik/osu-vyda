@@ -1,0 +1,3 @@
+XAMPP — Apache, MySQL, PHP a Perl v jednom
+Zdroj Moodlu: https://moodle.osu.cz/mod/url/view.php?id=802323
+Cílový odkaz uvedený v kurzu: https://www.apachefriends.org/index.html

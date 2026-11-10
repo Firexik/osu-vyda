@@ -1,5 +1,5 @@
 Požadavky na absolvování
-Termín: úterý, 3. listopadu 2026, 22.55
+Termín: úterý, 10. listopadu 2026, 23.59
 
 Vytvořte PHP skript, který po otevření zobrazí formulář pro vyhledávání hardwaru podle parametrů. Typ hardwaru si určete sami. Formulář musí obsahovat minimálně 5 parametrů. Ve formuláři použijte alespoň 4 různé druhy formulářových prvků (textové pole, zaškrtávátko, rozbalovací seznam...).
 

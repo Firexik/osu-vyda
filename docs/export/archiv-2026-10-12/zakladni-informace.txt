@@ -1,0 +1,33 @@
+Úvod předmětu je věnován seznámení s protokolem HTTP a formuláři v HTML. Dále už je předmět zaměřen na tvorbu webových aplikací v jazyce PHP s propojením na databázi MySQL. Student by měl být po absolvování předmětu schopen samostatně vytvářet webové aplikace v PHP.
+
+Požadavky na studenta: Odevzdání 3 korespondenčních úkolů - 2 korespondenční úkoly průběžně během semestru a 1 semestrální projekt (webová aplikace v PHP podle zadání). Závěrečné projekty budou prezentovány u zápočtu.
+
+Přehled probírané látky
+1. Protokol HTTP a jeho vlastnosti. Formuláře v HTML. Představení jazyka PHP.
+2. Server Apache a jazyk PHP. Základní nastavení, moduly jazyka.
+3. Práce s proměnnými v PHP, zpracování dat z formulářů.
+4. Podmínky a cykly v PHP. Práce se soubory v PHP.
+5. Práce s datem a časem v PHP. Vytváření funkcí v PHP. Příkazy include a require v PHP.
+6. Práce s řetězci v PHP.
+7. Práce se session v PHP.
+8. Objektově orientované programování v PHP.
+9. Databáze MySQL a její propojení s PHP. Základní práce s databází MySQL.
+10. Pokročilejší práce s databází MySQL v PHP.
+11. Regulární výrazy v PHP.
+12. XSLT transformace, jazyk Xpath.
+13. XSLT transformace v PHP, generování HTML stránky z XML.
+
+Literatura
+Základní: Ponkrác M. PHP a MySQL bez předchozích znalostí Průvodce pro samouky. Computer press, 2007. ISBN 978-80-251-1758-3.
+Základní: Kofler M., Öggl B. PHP 5 a MySQL 5 Průvodce webového programátora. Computer press, 2007. ISBN 978-80-251-1813-9.
+Základní: Miarka, R. Webové a databázové aplikace v PHP.
+Rozšiřující: Castro E. HTML, XHTML a CSS Názorný průvodce tvorbou WWW stránek. Computer Press, 2007. ISBN 978-80-251-1531-2.
+Rozšiřující: Croft J., Lloyd I., Rubin D. Mistrovství v CSS Pokročilé techniky pro webové designéry a vývojáře. Computer Press, 2007. ISBN 978-80-251-1705-7.
+Rozšiřující: Kofler M. Mistrovství v MySQL 5 Kompletní průvodce webového vývojáře. Computer Press, 2007. ISBN 978-80-251-1502-2.
+Rozšiřující: Welling L., Thomson L. MySQL Průvodce základy databázového systému. Computer Press, 2005. ISBN 80-251-0671-3.
+Rozšiřující: Holzner S. XSLT Příručka internetového vývojáře. Computer Press, 2002. ISBN 8072266004.
+Doporučená: Gutmans A., Bakken S. S., Rethans D. Mistrovství v PHP 5. Computer Press, 2007.
+Doporučená: Lacko L. PHP 5 a MySQL 5.. Computer Press, 2005. ISBN 978-80-251-1695-1.
+Doporučená: Kolektiv autorů. PHP5, MySQL, Apache Vytváříme webové aplikace. Computer press, 2006. ISBN 80-251-1073-7.
+
+Naposledy změněno: středa, 18. září 2013, 10.36

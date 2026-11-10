@@ -16,47 +16,19 @@
     "url": "https://moodle.osu.cz/mod/forum/view.php?id=802319"
   },
   {
-    "title": "Základní informace o kurzu\nStránka",
-    "url": "https://moodle.osu.cz/mod/page/view.php?id=802320"
-  },
-  {
-    "title": "Kompletní studijní opora\nSoubor",
-    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802321"
-  },
-  {
     "title": "XAMPP\nURL",
     "url": "https://moodle.osu.cz/mod/url/view.php?id=802323"
-  },
-  {
-    "title": "Přednáška Protokol HTTP, formuláře v HTML\nSoubor",
-    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802324"
-  },
-  {
-    "title": "Přednáška Operátory, příkazy, cykly, funkce, práce s řetězcem\nSoubor",
-    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802325"
-  },
-  {
-    "title": "Přednáška Práce s databází v PHP\nSoubor",
-    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802326"
-  },
-  {
-    "title": "Přednáška OOP v PHP, frameworky\nSoubor",
-    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802327"
-  },
-  {
-    "title": "Přednáška Nette framework\nSoubor",
-    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802328"
   },
   {
     "title": "Sbalit",
     "url": "https://moodle.osu.cz/course/view.php?id=12051#coursecontentcollapseid144004"
   },
   {
-    "title": "Síťový protokol HTTP",
+    "title": "Protokol HTTP, metody požadavků protokolu HTTP, formuláře v HTML",
     "url": "https://moodle.osu.cz/course/section.php?id=144004"
   },
   {
-    "title": "Síťový protokol HTTP\nSoubor",
+    "title": "Protokol HTTP\nSoubor",
     "url": "https://moodle.osu.cz/mod/resource/view.php?id=802330"
   },
   {
@@ -64,35 +36,43 @@
     "url": "https://moodle.osu.cz/course/view.php?id=12051#coursecontentcollapseid144005"
   },
   {
-    "title": "Formuláře v jazyce HTML",
+    "title": "Operátory, příkazy, cykly",
     "url": "https://moodle.osu.cz/course/section.php?id=144005"
   },
   {
-    "title": "Formuláře v jazyce HTML\nSoubor",
+    "title": "Operátory, příkazy, cykly\nSoubor",
     "url": "https://moodle.osu.cz/mod/resource/view.php?id=802331"
+  },
+  {
+    "title": "Korespondenční úkol č. 1",
+    "url": "https://moodle.osu.cz/mod/assign/view.php?id=822423"
   },
   {
     "title": "Sbalit",
     "url": "https://moodle.osu.cz/course/view.php?id=12051#coursecontentcollapseid144006"
   },
   {
-    "title": "Jazyk PHP, jeho historie a hlavní rysy",
+    "title": "Práce s databází v PHP",
     "url": "https://moodle.osu.cz/course/section.php?id=144006"
   },
   {
-    "title": "Jazyk PHP, jeho historie a hlavní rysy\nSoubor",
+    "title": "Práce s databází v PHP\nSoubor",
     "url": "https://moodle.osu.cz/mod/resource/view.php?id=802333"
+  },
+  {
+    "title": "Korespondenční úkol č. 2",
+    "url": "https://moodle.osu.cz/mod/assign/view.php?id=802354"
   },
   {
     "title": "Sbalit",
     "url": "https://moodle.osu.cz/course/view.php?id=12051#coursecontentcollapseid144007"
   },
   {
-    "title": "Prvni aplikace v PHP, proměnné, konstanty, operátory",
+    "title": "PHP OOP, frameworky",
     "url": "https://moodle.osu.cz/course/section.php?id=144007"
   },
   {
-    "title": "První aplikace v PHP, práce s proměnnými a konstantami, operátory\nSoubor",
+    "title": "PHP OOP, frameworky\nSoubor",
     "url": "https://moodle.osu.cz/mod/resource/view.php?id=802335"
   },
   {
@@ -100,104 +80,12 @@
     "url": "https://moodle.osu.cz/course/view.php?id=12051#coursecontentcollapseid144008"
   },
   {
-    "title": "Příkazy",
+    "title": "Nette",
     "url": "https://moodle.osu.cz/course/section.php?id=144008"
   },
   {
-    "title": "Příkazy\nSoubor",
+    "title": "Nette\nSoubor",
     "url": "https://moodle.osu.cz/mod/resource/view.php?id=802337"
-  },
-  {
-    "title": "Sbalit",
-    "url": "https://moodle.osu.cz/course/view.php?id=12051#coursecontentcollapseid144009"
-  },
-  {
-    "title": "Zpracování vstupu od uživatele",
-    "url": "https://moodle.osu.cz/course/section.php?id=144009"
-  },
-  {
-    "title": "Zpracování vstupu od uživatele\nSoubor",
-    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802339"
-  },
-  {
-    "title": "Korespondenční úkol č. 1",
-    "url": "https://moodle.osu.cz/mod/assign/view.php?id=802341"
-  },
-  {
-    "title": "Sbalit",
-    "url": "https://moodle.osu.cz/course/view.php?id=12051#coursecontentcollapseid144010"
-  },
-  {
-    "title": "Funkce",
-    "url": "https://moodle.osu.cz/course/section.php?id=144010"
-  },
-  {
-    "title": "Funkce\nSoubor",
-    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802342"
-  },
-  {
-    "title": "Sbalit",
-    "url": "https://moodle.osu.cz/course/view.php?id=12051#coursecontentcollapseid144011"
-  },
-  {
-    "title": "Práce se soubory",
-    "url": "https://moodle.osu.cz/course/section.php?id=144011"
-  },
-  {
-    "title": "Práce se soubory",
-    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802344"
-  },
-  {
-    "title": "Sbalit",
-    "url": "https://moodle.osu.cz/course/view.php?id=12051#coursecontentcollapseid144012"
-  },
-  {
-    "title": "Práce s řetězci",
-    "url": "https://moodle.osu.cz/course/section.php?id=144012"
-  },
-  {
-    "title": "Práce s řetězci\nSoubor",
-    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802346"
-  },
-  {
-    "title": "Sbalit",
-    "url": "https://moodle.osu.cz/course/view.php?id=12051#coursecontentcollapseid144013"
-  },
-  {
-    "title": "Práce s polem, práce s datem a časem",
-    "url": "https://moodle.osu.cz/course/section.php?id=144013"
-  },
-  {
-    "title": "Práce s polem, práce s datem a časem\nSoubor",
-    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802348"
-  },
-  {
-    "title": "Sbalit",
-    "url": "https://moodle.osu.cz/course/view.php?id=12051#coursecontentcollapseid144014"
-  },
-  {
-    "title": "Objektově orientované programování v PHP",
-    "url": "https://moodle.osu.cz/course/section.php?id=144014"
-  },
-  {
-    "title": "Objektově orientované programování v PHP\nSoubor",
-    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802350"
-  },
-  {
-    "title": "Sbalit",
-    "url": "https://moodle.osu.cz/course/view.php?id=12051#coursecontentcollapseid144015"
-  },
-  {
-    "title": "Databáze MySQL",
-    "url": "https://moodle.osu.cz/course/section.php?id=144015"
-  },
-  {
-    "title": "Databáze MySQL\nSoubor",
-    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802352"
-  },
-  {
-    "title": "Korespondenční úkol č. 2",
-    "url": "https://moodle.osu.cz/mod/assign/view.php?id=802354"
   },
   {
     "title": "Sbalit",

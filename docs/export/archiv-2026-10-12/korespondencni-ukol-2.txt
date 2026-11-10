@@ -1,0 +1,8 @@
+Požadavky na absolvování
+Termín: úterý, 1. prosince 2026, 23.55
+
+Na databázovém serveru si vytvořte tabulku předmětů, která bude mít strukturu jako na následujícím obrázku:
+
+Dále vytvořte PHP skript, který bude obsahovat formulář pro vložení záznamu do tabulky predmety. Ve formuláři použijte vhodné formulářové prvky. Pod formulářem bude ve formě tabulky vypsán obsah tabulky predmety. Pokud tabulka neobsahuje žádný záznam, bude o tom zobrazena zpráva. Formulář se bude odesílat na stejný PHP skript. Po odeslání formuláře se provede kontrola zadaných dat (pokud bude nutná) a uloží se nový záznam do tabulky.
+
+Odevzdávaný soubor pojmenujte XVYDA_KU2_prijmeni.php nebo 2VYDA_KU2_prijmeni.php (prijmeni bez diakritiky, XVYDA nebo 2VYDA podle formy studia).

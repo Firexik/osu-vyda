@@ -1,0 +1,107 @@
+[
+  {
+    "title": "Kompletní studijní opora\nSoubor",
+    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802321",
+    "file": "Webové a databázové aplikace v PHP.pdf"
+  },
+  {
+    "title": "Přednáška Protokol HTTP, formuláře v HTML\nSoubor",
+    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802324",
+    "file": "1-Protokol-http-formulare-HTML.ppt"
+  },
+  {
+    "title": "Přednáška Operátory, příkazy, cykly, funkce, práce s řetězcem\nSoubor",
+    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802325",
+    "file": "2-Operatory-prikazy-cykly-funkce-prace-s-retezcem.ppt"
+  },
+  {
+    "title": "Přednáška Práce s databází v PHP\nSoubor",
+    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802326",
+    "file": "3-Prace-s-databazi-v-PHP.ppt"
+  },
+  {
+    "title": "Přednáška OOP v PHP, frameworky\nSoubor",
+    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802327",
+    "file": "4-OOP-frameworky.ppt"
+  },
+  {
+    "title": "Přednáška Nette framework\nSoubor",
+    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802328",
+    "file": "5-Nette.ppt"
+  },
+  {
+    "title": "Síťový protokol HTTP\nSoubor",
+    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802330",
+    "file": "01_Sitovy_protokol_HTTP.pdf"
+  },
+  {
+    "title": "Formuláře v jazyce HTML\nSoubor",
+    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802331",
+    "file": "02_Formulare_v_jazyce_HTML.pdf"
+  },
+  {
+    "title": "Jazyk PHP, jeho historie a hlavní rysy\nSoubor",
+    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802333",
+    "file": "03_Jazyk_PHP_jeho_historie_a_zakladni_rysy.pdf"
+  },
+  {
+    "title": "První aplikace v PHP, práce s proměnnými a konstantami, operátory\nSoubor",
+    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802335",
+    "file": "04_Prvni_aplikace_promenne_konstanty_operatory.pdf"
+  },
+  {
+    "title": "Příkazy\nSoubor",
+    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802337",
+    "file": "05_Prikazy.pdf"
+  },
+  {
+    "title": "Zpracování vstupu od uživatele\nSoubor",
+    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802339",
+    "file": "06_Zpracovani_vstupu_od_uzivatele.pdf"
+  },
+  {
+    "title": "Funkce\nSoubor",
+    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802342",
+    "file": "07_Funkce.pdf"
+  },
+  {
+    "title": "Práce se soubory",
+    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802344",
+    "file": "08_Prace_se_soubory.pdf"
+  },
+  {
+    "title": "Práce s řetězci\nSoubor",
+    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802346",
+    "file": "09_Prace_s_retezci.pdf"
+  },
+  {
+    "title": "Práce s polem, práce s datem a časem\nSoubor",
+    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802348",
+    "file": "10_Prace_s_polem_prace_s_date_a_casem.pdf"
+  },
+  {
+    "title": "Objektově orientované programování v PHP\nSoubor",
+    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802350",
+    "file": "11_Objektove_orientovane_programovani_v_PHP.pdf"
+  },
+  {
+    "title": "Databáze MySQL\nSoubor",
+    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802352",
+    "file": "12_Databaze_MySQL.pdf"
+  },
+  {
+    "title": "SQL skript\nSoubor",
+    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802356",
+    "file": "vydap_projekt_final.sql.txt"
+  },
+  {
+    "title": "Úkol 1\nSoubor",
+    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802374",
+    "file": "ukol1.pdf"
+  },
+  {
+    "title": "Úkol 2\nSoubor",
+    "url": "https://moodle.osu.cz/mod/resource/view.php?id=802375",
+    "file": "ukol2.pdf"
+  }
+]

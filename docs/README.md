@@ -1,6 +1,6 @@
 # Webové a databázové aplikace — KIP/7VYDA
 
-Studijní podklady pro ZS 2026/2027, Ostravská univerzita. Export z přihlášeného [kurzu v Moodlu](https://moodle.osu.cz/course/view.php?id=12051) ze dne **12. 10. 2026**. V úvodu kurzu je uveden RNDr. Bogdan Walek, Ph.D.
+Studijní podklady pro ZS 2026/2027, Ostravská univerzita. Export z přihlášeného [kurzu v Moodlu](https://moodle.osu.cz/course/view.php?id=12051) aktualizovaný dne **10. 11. 2026**. V úvodu kurzu je uveden RNDr. Bogdan Walek, Ph.D.
 
 ## Řešení úkolu 2
 
@@ -14,26 +14,30 @@ Podkladem je [vyda-ukol-2.pdf](materialy/vyda-ukol-2.pdf), příloha dodaná už
 
 ## Orientace v podkladech
 
-- [Výpis celé stránky kurzu](kurz.md) — text všech 17 viditelných sekcí, cíle kapitol, průvodce studiem, shrnutí a kontrolní otázky.
-- [Katalog materiálů](materialy.md) — odkazy na všech 21 stažených souborů a tři obrázky.
-- [Základní informace](export/zakladni-informace.txt) — požadavky na absolvování, přehled výuky a literatura.
+- [Výpis celé stránky kurzu](kurz.md) — text všech 10 viditelných sekcí, cíle kapitol, průvodce studiem, shrnutí a kontrolní otázky.
+- [Katalog materiálů](materialy.md) — odkazy na 8 aktuálně dostupných souborů a dvě obrázkové přílohy zadání.
+- [Archivní základní informace z 12. 10. 2026](export/zakladni-informace.txt) — původní požadavky na absolvování, přehled výuky a literatura; tato stránka již není v aktuální osnově dostupná.
 - [Korespondenční úkol 1](export/korespondencni-ukol-1.txt), [korespondenční úkol 2](export/korespondencni-ukol-2.txt), [semestrální projekt](export/semestralni-projekt.txt) — úplná zadání včetně termínů.
-- [Původní textový výpis](export/kurz.txt), [struktura sekcí](export/sekce.json), [odkazy ze stránky](export/odkazy.json) a [manifest souborů](export/materialy.json) — podklady pro ověření exportu.
+- [Aktuální textový výpis](export/kurz.txt), [struktura sekcí](export/sekce.json), [odkazy ze stránky](export/odkazy.json) a [manifest souborů](export/materialy.json) — podklady pro ověření exportu.
 - [Kontrolní součty](export/kontrolni-soucty.csv) — velikosti a SHA-256 stažených materiálů.
 
 ## Souhrn kurzu
 
-Cílem předmětu je samostatná tvorba webové aplikace v PHP propojené s MySQL. Výuka začíná HTTP a HTML formuláři, pokračuje proměnnými, konstantami, operátory, podmínkami, cykly a zpracováním vstupu. Další kapitoly pokrývají funkce, soubory, řetězce, pole, datum a čas, objektové programování a databáze MySQL. Přednášky doplňují frameworky a Nette. Základní informace uvádějí také session, regulární výrazy, XPath a XSLT.
+Aktuální Moodle je rozdělen do pěti výukových kapitol: HTTP a HTML formuláře; operátory, příkazy a cykly; databáze v PHP; OOP a frameworky; Nette. Nové prezentace pokrývají také bezpečné zpracování vstupu, parametrizované dotazy mysqli/PDO, strict types, předávání závislostí, generátory, dekorátory a autentizaci a autorizaci. Jde o souhrn obsahu zdroje, nikoli nezávislé ověření tvrzení v prezentacích.
 
-Stažené podklady: kompletní studijní opora, 12 samostatných kapitol v PDF, pět přednášek v PPT, dva samostatné úkoly v PDF a SQL podklad k projektu. Vše je v `materialy/`. SQL podklad je uložen beze změny obsahu jako `.sql.txt`; jedná se o dodané zadání, nikoli vlastní implementaci.
+V [materialy/2026-11-10/](materialy/2026-11-10/) je nově stažených pět prezentací PPTX, dvě PDF zadání samostatných úkolů a SQL podklad. K tomu jsou uložena schémata z korespondenčního úkolu 2 a semestrálního projektu. SQL podklad je uložen beze změny obsahu jako `.sql.txt`. Obrázek k projektu je dostupný i přímo níže:
+
+![Schéma databáze semestrálního projektu](materialy/2026-11-10/schema-semestralni-projekt.png)
+
+Původní studijní opora, kapitoly a staré prezentace zůstávají zachované v [archivním katalogu](materialy-archiv-2026-10-12.md). Původní textové exporty a manifest jsou v [export/archiv-2026-10-12/](export/archiv-2026-10-12/). Aktuální a archivní podklady jsou tak rozlišeny; případné soubory dodané uživatelem zůstávají zachované.
 
 ## Povinnosti a termíny
 
-Podle základních informací jsou požadovány dva průběžné korespondenční úkoly a semestrální projekt, který se prezentuje u zápočtu. Následující časy jsou převzaté ze zobrazení Moodlu při exportu:
+Podle archivních základních informací jsou požadovány dva průběžné korespondenční úkoly a semestrální projekt, který se prezentuje u zápočtu. Následující časy jsou převzaté ze zobrazení Moodlu při aktualizaci 10. 11. 2026:
 
 | Zadání | Termín | Hlavní požadavky |
 | --- | --- | --- |
-| Korespondenční úkol 1 | 3. 11. 2026, 22:55 | Formulář pro vyhledávání hardwaru, alespoň 5 parametrů a 4 druhy prvků; odeslání na stejný skript a tabulkový výpis hodnot. |
+| Korespondenční úkol 1 | 10. 11. 2026, 23:59 | Formulář pro vyhledávání hardwaru, alespoň 5 parametrů a 4 druhy prvků; odeslání na stejný skript a tabulkový výpis hodnot. |
 | Korespondenční úkol 2 | 1. 12. 2026, 23:55 | Tabulka předmětů v databázi, formulář pro vložení záznamu, kontrola vstupu a výpis obsahu tabulky. |
 | Semestrální projekt | 7. 12. 2026, 23:55 | PHP/MySQL aplikace pro přihlašování studentů na termíny zápočtů a zkoušek. |
 
@@ -45,8 +49,8 @@ Projekt rozlišuje přihlášeného pedagoga a studenta. Vyžaduje alespoň pět
 - Fórum [Oznámení](export/oznameni.txt) při exportu neobsahovalo žádná oznámení.
 - [XAMPP](export/xampp.txt) je externí odkaz na Apache Friends; instalátor není studijní přílohou a není archivován.
 - Export obsahuje text výukového obsahu a zadání, nikoli osobní stav odevzdání, známky či údaje přihlášeného účtu.
-- Podklady zachovávají obsah kurzu včetně historické terminologie a funkcí. Souhrn není aktualizací materiálů na současné verze PHP.
+- Archivní podklady zachovávají historickou terminologii a funkce. Pro aktuální osnovu použijte export a materiály ze dne 10. 11. 2026.
 
 ## Větve repozitáře
 
-Větev `main` obsahuje pouze tuto složku `docs` se studijními podklady. Byla vytvořena z dosavadní výchozí větve `master`; vlastní PHP kód a Bootstrap byly z jejího aktuálního stromu odstraněny. Dosavadní větve `master`, `cv2-6.10.2026` a `ukol1` zůstaly zachovány.
+Tato aktualizace je na nejnovější pracovní větvi `cv7-10.11.2026` v repozitáři na Proton Drive. Výchozí větev repozitáře je `main`; tato aktualizace ji nemění. Vlastní implementace cvičení a úkolů je na pracovních větvích.

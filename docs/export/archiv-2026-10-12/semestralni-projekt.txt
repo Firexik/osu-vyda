@@ -1,0 +1,28 @@
+Požadavky na absolvování
+Termín: pondělí, 7. prosince 2026, 23.55
+
+Vaším úkolem je vytvořit webovou aplikaci, ve které se mohou studenti zapisovat na vypsané termíny zápočtů/zkoušek a případně se z nich odepisovat. Aplikace bude pracovat s databází MySQL. Struktura databáze je na následujícím obrázku:
+
+Schéma databáze je zde uvedeno jako referenční z hlediska celkové struktury databáze. Ve schématu databáze je možné provádět dílčí změny a úpravy, nicméně je potřeba je poté zdůvodnit při obhajobě projektu. 
+
+Tabulky Pedagogove, Predmety, Studenti, Vysledky, Mistnosti, Pedagogove_predmety a Studenti_predmety budou v systému pouze jako číselníky. Naplňte si je nějakými zkušebními daty, ale v rámci systému se z nich budou data pouze načítat.
+
+V systému budou rozlišeny 2 uživatelské pohledy - pedagog a student. Nepřihlášený uživatel nebude moci pracovat se systémem!
+
+V databázi bude vloženo min. 5 pedagogů a 5 studentů, kteří budou mít funkční přihlašovací údaje, přiřazené předměty a možnost pracovat se systémem.
+
+Pedagog bude mít po přihlášení k dispozici tyto sekce:
+
+Moje předměty - seznam předmětů, které pedagog vyučuje
+Moje termíny - tabulka s termíny u předmětů, které pedagog vyučuje
+
+Po přihlášení pedagoga bude moci vyučující vytvářet, upravovat nebo mazat termíny zápočtů/zkoušek u předmětů, které vyučuje. Není možné vytvořit termín zápočtů a zkoušek na nějaké datum a čas v minulosti, pouze na datum a čas v budoucnu!!! U již proběhlých termínů bude moci zadat hodnocení (zadávání hodnocení je nepovinnou funkčností).
+
+Student bude mít po přihlášení k dispozici tyto sekce:
+
+Moje předměty - seznam předmětů, které student studuje
+Vypsané termíny - tabulka s vypsanými termíny u předmětů, které student studuje
+
+Po přihlášení studenta se studentovi zobrazí vypsané termíny pro předměty, které studuje. Student se bude moci zapisovat na termín nebo se z nich odhlašovat. Student nesmí mít možnost zapsat se na daný konkrétní termín více než jednou. Student se nesmí mít možnost zapsat na více termínů stejného předmětu (možnost zapsat se pouze na jeden platný termín daného předmětu). Student nesmí mít možnost zapsat se na daný konkrétní termín - pokud už je na termínu zapsán maximální počet jiných studentů (sloupec max_pocet_prihlasenych v tabulce vypsane_terminy).
+
+Vytvořený systém budete prezentovat u zápočtu - buď na svém notebooku nebo dostanete k dispozici jiný počítač, kde bude nainstalováno vše potřebné (PHP, Apache, MySQL).
