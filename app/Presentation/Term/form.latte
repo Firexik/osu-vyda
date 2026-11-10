@@ -1,0 +1,7 @@
+{block title}{$editing ? 'Upravit termín' : 'Nový termín'}{/block}
+{block content}
+<h2>{$editing ? 'Upravit termín' : 'Nový termín'}</h2>
+{control termForm}
+<p class="note">Časy jsou v pásmu Europe/Prague. Termín musí být v budoucnosti.</p>
+<p><a n:href="default">Zpět na termíny</a></p>
+{/block}

@@ -1,0 +1,5 @@
+# Zkopírujte jako local.neon a upravte připojení ke své MySQL/MariaDB.
+database:
+    dsn: 'mysql:host=127.0.0.1;port=3306;dbname=vyda_project;charset=utf8mb4'
+    user: root
+    password: ''

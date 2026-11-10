@@ -1,0 +1,49 @@
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #181b20; color: #e4e7ec; font: 15px/1.5 Arial, sans-serif; }
+.container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+header { border-bottom: 1px solid #454b55; padding-bottom: 20px; margin-bottom: 25px; }
+h1 { font-size: 27px; margin: 0 0 18px; }
+h2 { font-size: 22px; margin: 0 0 20px; }
+nav { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+nav span { margin-left: auto; font-size: 13px; color: #b9c0cc; }
+nav form { margin: 0; }
+a { color: #9dbde8; text-underline-offset: 3px; }
+a:hover { color: #c5dcfa; }
+main { background: #232730; padding: 25px; border: 1px solid #383f4a; border-radius: 5px; }
+p { margin: 0 0 16px; }
+table { width: 100%; border-collapse: collapse; }
+th, td { border: 1px solid #454b55; padding: 10px 12px; text-align: left; vertical-align: middle; }
+th { background: #2c323d; }
+tbody tr:hover { background: #292f39; }
+.table-wrapper { overflow-x: auto; }
+.table-wrapper table { min-width: 650px; }
+.nowrap { white-space: nowrap; }
+small { color: #b7c0cc; }
+td > small, td > strong.enrolled { display: block; }
+form { margin: 15px 0; }
+form table { width: auto; max-width: 100%; }
+form th, form td { border: 0; background: transparent; padding: 8px 12px 8px 0; }
+form th { min-width: 170px; font-size: 14px; }
+form tr:hover { background: transparent; }
+input, select, textarea, button, .button { font: inherit; border-radius: 3px; }
+input, select, textarea { background: #181b20; border: 1px solid #5b6574; padding: 8px 10px; color: #eee; max-width: 100%; }
+input:not([type=submit]), select, textarea { width: 360px; }
+textarea { min-height: 90px; resize: vertical; }
+button, input[type=submit], .button { display: inline-block; padding: 8px 14px; background: #384f6d; color: #fff; border: 1px solid #607b9e; text-decoration: none; cursor: pointer; }
+button:hover, input[type=submit]:hover, .button:hover { background: #466386; color: #fff; }
+:focus-visible { outline: 2px solid #b3d0f5; outline-offset: 3px; }
+.flash { padding: 10px 14px; border: 1px solid #587151; background: #2d3e2a; }
+.error, ul.error { color: #ffb8b0; }
+.enrolled { color: #a9d79d; }
+.note { color: #b7c0cc; font-size: 13px; }
+@media (max-width: 650px) {
+    .container { margin: 18px auto; padding: 0 12px; }
+    main { padding: 18px; }
+    h1 { font-size: 23px; }
+    nav { gap: 12px; }
+    nav span { width: 100%; margin-left: 0; }
+    form table, form tbody, form tr, form th, form td { display: block; width: 100%; }
+    form th { padding-bottom: 3px; }
+    input:not([type=submit]), select, textarea { width: 100%; }
+}

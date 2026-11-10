@@ -1,0 +1,19 @@
+{block title}Moje předměty{/block}
+{block content}
+<h2>Moje předměty</h2>
+<div class="table-wrapper">
+<table>
+    <thead><tr><th>Zkratka</th><th>Název</th><th>Kredity</th><th>Přednášky / cvičení</th><th>Ukončení</th></tr></thead>
+    <tbody>
+    <tr n:foreach="$courses as $course">
+        <td>{$course->zkratka_predmetu}</td>
+        <td>{$course->nazev}</td>
+        <td>{$course->pocet_kreditu}</td>
+        <td>{$course->pocet_hodin_prednasek} / {$course->pocet_hodin_cviceni}</td>
+        <td>{$course->ukonceni}</td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<p n:if="!count($courses)">Nemáte přiřazené žádné předměty.</p>
+{/block}

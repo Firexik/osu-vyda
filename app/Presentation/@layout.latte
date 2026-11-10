@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <title>{ifset title}{include title} | {/ifset}Zápis na termíny</title>
+    <link rel="stylesheet" href="{$basePath}/assets/app.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Zápis na zápočty a zkoušky</h1>
+        {if $user->isLoggedIn()}
+        <nav>
+            <a n:href=":Course:default">Moje předměty</a>
+            <a n:href=":Term:default">{$user->isInRole('pedagog') ? 'Moje termíny' : 'Vypsané termíny'}</a>
+            <span>{$user->identity->name} ({$user->isInRole('pedagog') ? 'pedagog' : 'student'})</span>
+            {form logoutForm}<button n:name="send">Odhlásit se</button>{/form}
+        </nav>
+        {/if}
+    </header>
+    <main>
+        <p n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</p>
+        {include content}
+    </main>
+</div>
+</body>
+</html>

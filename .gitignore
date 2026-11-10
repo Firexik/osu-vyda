@@ -1,0 +1,9 @@
+/vendor/
+/config/local.neon
+/temp/*
+!/temp/.gitkeep
+/log/*
+!/log/.gitkeep
+/.idea/
+/.vscode/
+*.log

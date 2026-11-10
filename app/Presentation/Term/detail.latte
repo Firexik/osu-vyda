@@ -1,0 +1,20 @@
+{block title}Detail termínu{/block}
+{block content}
+<h2>{$term->zkratka_predmetu} – {$term->nazev}</h2>
+<p><strong>Datum a čas:</strong> {$term->datum_cas|date:'d. m. Y H:i'}</p>
+<p><strong>Místnost:</strong> {$term->zkratka_mistnosti}</p>
+<p><strong>Pedagog:</strong> {$term->pedagog}</p>
+<p><strong>Obsazenost:</strong> {$term->obsazeno} / {$term->max_pocet_prihlasenych}</p>
+<p><strong>Poznámka:</strong> {$term->poznamka ?: 'Bez poznámky.'}</p>
+{if $term->datum_cas <= $now}
+    <p>Termín již proběhl.</p>
+{elseif $user->isInRole('student')}
+    <p n:if="$term->zapsan" class="enrolled">Na tento termín jste přihlášeni.</p>
+    {if !$term->zapsan && $term->obsazeno >= $term->max_pocet_prihlasenych}
+        <p>Termín je plně obsazen.</p>
+    {else}
+        {control registrationForm}
+    {/if}
+{/if}
+<p><a n:href="default">Zpět na termíny</a></p>
+{/block}

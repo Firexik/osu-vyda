@@ -1,0 +1,2 @@
+# Only www is public; all source files and configuration stay private.
+Require all denied

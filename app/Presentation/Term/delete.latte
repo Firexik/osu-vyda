@@ -1,0 +1,8 @@
+{block title}Smazat termín{/block}
+{block content}
+<h2>Smazat termín</h2>
+<p>Opravdu chcete smazat termín <strong>{$term->zkratka_predmetu}</strong> dne <strong>{$term->datum_cas|date:'d. m. Y H:i'}</strong>?</p>
+<p>Smažou se také jeho zápisy. Počet přihlášených studentů: {$term->obsazeno}.</p>
+{control deleteForm}
+<p><a n:href="default">Zrušit a vrátit se</a></p>
+{/block}

@@ -1,0 +1,34 @@
+{block title}Termíny{/block}
+{block content}
+{var $teacher = $user->isInRole('pedagog')}
+<h2>{$teacher ? 'Moje termíny' : 'Vypsané termíny'}</h2>
+<p n:if="$teacher"><a n:href="create" class="button">Vytvořit termín</a></p>
+<p n:if="!$teacher" class="note">Na každý předmět si můžete zapsat pouze jeden platný termín. Přihlášení i odhlášení najdete v detailu.</p>
+<div class="table-wrapper">
+<table>
+    <thead><tr><th>Předmět</th><th>Datum a čas</th><th>Místnost</th><th>Obsazenost</th><th>Akce</th></tr></thead>
+    <tbody>
+    <tr n:foreach="$terms as $term">
+        <td>{$term->zkratka_predmetu}<br><small>{$term->nazev}</small></td>
+        <td class="nowrap">{$term->datum_cas|date:'d. m. Y H:i'}</td>
+        <td>{$term->zkratka_mistnosti}</td>
+        <td>{$term->obsazeno} / {$term->max_pocet_prihlasenych}</td>
+        <td>
+            <a n:href="detail, $term->id_terminu">Detail</a>
+            {if $teacher && $term->datum_cas > $now}
+                · <a n:href="edit, $term->id_terminu">Upravit</a>
+                · <a n:href="delete, $term->id_terminu">Smazat</a>
+            {elseif $term->datum_cas <= $now}
+                <small>Proběhlý termín</small>
+            {elseif $term->zapsan}
+                <strong class="enrolled">Přihlášen/a</strong>
+            {elseif $term->obsazeno >= $term->max_pocet_prihlasenych}
+                <small>Obsazeno</small>
+            {/if}
+        </td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<p n:if="!count($terms)">Nejsou vypsány žádné termíny.</p>
+{/block}

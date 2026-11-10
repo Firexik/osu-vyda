@@ -1,0 +1,22 @@
+application:
+    errorPresenter: Error
+    mapping: App\Presentation\*\**Presenter
+
+database:
+    dsn: 'mysql:host=127.0.0.1;port=3306;dbname=vyda_project;charset=utf8mb4'
+    user: root
+    password: ''
+
+session:
+    savePath: %tempDir%/sessions
+    expiration: 2 hours
+    name: vyda_project
+    cookieSamesite: Lax
+
+latte:
+    strictParsing: yes
+
+services:
+    router: App\Core\RouterFactory::createRouter
+    - App\Model\AccountAuthenticator
+    - App\Model\TermFacade
