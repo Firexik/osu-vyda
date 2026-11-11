@@ -3,7 +3,9 @@ Termín: pondělí, 7. prosince 2026, 23.55
 
 Vaším úkolem je vytvořit webovou aplikaci, ve které se mohou studenti zapisovat na vypsané termíny zápočtů/zkoušek a případně se z nich odepisovat. Aplikace bude pracovat s databází MySQL. Struktura databáze je na následujícím obrázku:
 
-Schéma databáze je zde uvedeno jako referenční z hlediska celkové struktury databáze. Ve schématu databáze je možné provádět dílčí změny a úpravy, nicméně je potřeba je poté zdůvodnit při obhajobě projektu. 
+Projekt bude vytvořen pomocí PHP frameworku Nette (případně jiného - Laravel, Symfony, apod.), rozhodně ne pomocí čistého PHP!
+
+Schéma databáze je zde uvedeno jako referenční z hlediska celkové struktury databáze. Ve schématu databáze je možné provádět dílčí změny a úpravy, nicméně je potřeba je poté zdůvodnit při obhajobě projektu. 
 
 Tabulky Pedagogove, Predmety, Studenti, Vysledky, Mistnosti, Pedagogove_predmety a Studenti_predmety budou v systému pouze jako číselníky. Naplňte si je nějakými zkušebními daty, ale v rámci systému se z nich budou data pouze načítat.
 

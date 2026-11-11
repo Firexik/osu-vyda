@@ -32,10 +32,16 @@ Každý účet má přiřazené předměty. Pedagog `p001` vyučuje VYDA a ALG2;
 
 Presentery a formuláře jsou v `app/Presentation/`, databázové operace v `app/Model/TermFacade.php` a ověření účtů v `app/Model/AccountAuthenticator.php`. Vzhled je v jediném `www/assets/app.css`; frontend nemá vlastní JavaScript ani další knihovny. `vendor/` jsou knihovny Nette a `temp/` jeho pracovní soubory.
 
-Původní zadání, SQL a schéma jsou v `docs/zadani/`. Oproti referenční databázi je sjednocena délka kódů předmětů na 10 znaků, použitá znaková sada `utf8mb4`, rozšířené pole hashe hesla a doplněný cizí klíč výsledku. Kapacity mají kladná omezení. Při smazání termínu se jeho zápisy odstraní přes cizí klíč.
+Aktuální zadání, SQL a schéma jsou v `docs/zadani/`. Dne 11. 11. 2026 byla do zadání doplněna výslovná povinnost použít Nette či jiný PHP framework; tato implementace ji již splňovala. [Kontrola požadavků a odůvodnění změn schématu](docs/obhajoba.md) slouží jako podklad k obhajobě. Oproti referenční databázi je sjednocena délka kódů předmětů na 10 znaků, použitá znaková sada `utf8mb4`, rozšířené pole hashe hesla a doplněný cizí klíč výsledku. Kapacity mají kladná omezení. Při smazání termínu se jeho zápisy odstraní přes cizí klíč.
 
 U obhajoby lze ukázat přihlášení obou rolí, seznam předmětů, vytvoření termínu, zápis na poslední místo, odmítnutí dalšího termínu stejného předmětu a odhlášení. Platný termín je termín v budoucnosti; časy jsou v `Europe/Prague`.
 
 Jednoduchý [wireframe ve Figmě](https://www.figma.com/design/chKP7n0xcQYFU4TDAQAmKw) odpovídá hornímu menu a tabulkovému přehledu.
 
 Ověřeno 10. 11. 2026 na PHP 8.2.12 a MariaDB 10.4.32: syntaxe PHP a Latte, 40 databázových kontrol, 23 HTTP kontrol a dva souběžné scénáře zápisu. Funguje vestavěný PHP server i místní XAMPP; zkontrolován desktop a mobilní zobrazení.
+
+## Opakovatelná kontrola zadání
+
+Dne 11. 11. 2026 bylo ověřeno všech 83 kontrol v `tests/requirements.php`: ukázkové účty obou rolí, přiřazené předměty, správa termínů, oprávnění, duplicity a kapacity, odhlášení, souběžné zápisy a skutečné webové formuláře. Funkční rozpor s aktuálním zadáním nebyl nalezen. Doplněno bylo aktualizované zadání a chybějící odůvodnění změn databáze.
+
+Test spusťte příkazem `php tests/requirements.php` proti lokálnímu MySQL/MariaDB serveru na portu 33077. Port a účet lze nastavit pomocí `VYDA_TEST_PORT`, `VYDA_TEST_USER` a `VYDA_TEST_PASSWORD`. Skript používá vlastní náhodně pojmenovanou databázi a izolovanou kopii webu v dočasné složce; databázi aplikace ani místní konfiguraci nemění. Podrobnosti a požadavky testu jsou v [podkladech k obhajobě](docs/obhajoba.md).
