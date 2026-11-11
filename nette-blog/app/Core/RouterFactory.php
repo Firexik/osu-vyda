@@ -13,6 +13,7 @@ final class RouterFactory
 	public static function createRouter(): RouteList
 	{
 		$router = new RouteList;
+		$router->addRoute('index.php', 'Home:default', oneWay: true);
 		$router->addRoute('<presenter>/<action>[/<id>]', 'Home:default');
 		return $router;
 	}

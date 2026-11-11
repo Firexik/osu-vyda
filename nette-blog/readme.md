@@ -191,3 +191,16 @@ Typová kontrola `php vendor/bin/phpstan analyse app tests --level=8` hlásí
 14 původních diagnostik v dosavadních presenterech a LatteExtension. Porovnání
 se zdrojovým kódem před touto úpravou potvrdilo, že implementace nepřidala
 žádné nové hlášení. Výsledek PHPStanu tedy zatím není bez chyb.
+
+Ověřeno znovu 11. 11. 2026 po návratu na větev `cv7-10.11.2026`: syntaxe
+PHP, test modelu, všech deset Latte šablon a tři konfigurace NEON. Kontrolu
+šablon lze spustit z adresáře `nette-blog` příkazem `php latte-lint app`.
+Přes místní XAMPP prošlo přihlášení, odmítnutí chybných údajů a formuláře bez
+CSRF tokenu, vytvoření a úprava článku, veřejné komentování, odhlášení
+a zablokování přímého odeslání editačního formuláře po odhlášení.
+Zkušební článek i komentáře byly odstraněny, původní data zůstala zachovaná.
+
+Po přepnutí z větve semestrálního projektu obnovte knihovny příkazem
+`composer install` v adresáři `nette-blog` a vlastní nastavení databáze
+v ignorovaném souboru `config/local.neon`. Adresy s koncovým `index.php`
+jsou přesměrovány na úvodní stránku bez názvu souboru.

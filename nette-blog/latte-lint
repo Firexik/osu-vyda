@@ -6,7 +6,7 @@ require __DIR__ . '/vendor/autoload.php';
 $path = $argv[1] ?? 'app';
 
 $bootstrap = new App\Bootstrap;
-$container = $bootstrap->bootConsoleApplication();
+$container = $bootstrap->bootWebApplication();
 $presenter = $container->getByType(Nette\Application\IPresenterFactory::class)
 	->createPresenter('Home');
 $latte = $container->getByType(Nette\Bridges\ApplicationLatte\TemplateFactory::class)
