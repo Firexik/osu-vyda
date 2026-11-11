@@ -12,6 +12,10 @@ Ověřeno dne **15. 10. 2026**: kontrola syntaxe `php -l ukol2.php` v PHP 8.2.12
 
 Podkladem je [vyda-ukol-2.pdf](materialy/vyda-ukol-2.pdf), příloha dodaná uživatelem dne **15. 10. 2026** pod tímto původním názvem. Jde o aktuální zadání s funkcemi `format_youtube_url` a `get_working_days` a příklady pro rok 2026. Archivní `materialy/ukol2.pdf` i korespondenční úkol 2 z exportu Moodlu jsou samostatné podklady a nebyly přepsány.
 
+## Aktualizace semestrálního projektu
+
+Zadání semestrálního projektu bylo znovu porovnáno s Moodlem dne **11. 11. 2026**. Nově je výslovně povinný **PHP framework Nette nebo jiný framework (např. Laravel či Symfony); čisté PHP není povolené**. [Záznam porovnání](export/kontrola-semestralniho-projektu-2026-11-11.md) uvádí rozsah změny a ověření obrázku. Ostatní exporty kurzu zůstávají ze dne 10. 11. 2026.
+
 ## Orientace v podkladech
 
 - [Výpis celé stránky kurzu](kurz.md) — text všech 10 viditelných sekcí, cíle kapitol, průvodce studiem, shrnutí a kontrolní otázky.
@@ -33,13 +37,13 @@ Původní studijní opora, kapitoly a staré prezentace zůstávají zachované 
 
 ## Povinnosti a termíny
 
-Podle archivních základních informací jsou požadovány dva průběžné korespondenční úkoly a semestrální projekt, který se prezentuje u zápočtu. Následující časy jsou převzaté ze zobrazení Moodlu při aktualizaci 10. 11. 2026:
+Podle archivních základních informací jsou požadovány dva průběžné korespondenční úkoly a semestrální projekt, který se prezentuje u zápočtu. Následující časy jsou převzaté ze zobrazení Moodlu při aktualizaci 10. 11. 2026; termín semestrálního projektu byl znovu ověřen 11. 11. 2026 a nezměnil se:
 
 | Zadání | Termín | Hlavní požadavky |
 | --- | --- | --- |
 | Korespondenční úkol 1 | 10. 11. 2026, 23:59 | Formulář pro vyhledávání hardwaru, alespoň 5 parametrů a 4 druhy prvků; odeslání na stejný skript a tabulkový výpis hodnot. |
 | Korespondenční úkol 2 | 1. 12. 2026, 23:55 | Tabulka předmětů v databázi, formulář pro vložení záznamu, kontrola vstupu a výpis obsahu tabulky. |
-| Semestrální projekt | 7. 12. 2026, 23:55 | PHP/MySQL aplikace pro přihlašování studentů na termíny zápočtů a zkoušek. |
+| Semestrální projekt | 7. 12. 2026, 23:55 | Aplikace v Nette či jiném PHP frameworku s MySQL pro přihlašování studentů na termíny zápočtů a zkoušek; čisté PHP není povolené. |
 
 Projekt rozlišuje přihlášeného pedagoga a studenta. Vyžaduje alespoň pět pedagogů a pět studentů s funkčními účty a přiřazenými předměty. Pedagog spravuje termíny svých předmětů; nové termíny musí být v budoucnosti. Student se přihlašuje a odhlašuje, nesmí překročit kapacitu, přihlásit se duplicitně ani mít více platných termínů stejného předmětu. Zadávání hodnocení je nepovinné. Dílčí úpravy referenčního schématu musí být zdůvodněny při obhajobě.
 
