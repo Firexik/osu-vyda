@@ -5,13 +5,15 @@
 <p><strong>Místnost:</strong> {$term->zkratka_mistnosti}</p>
 <p><strong>Pedagog:</strong> {$term->pedagog}</p>
 <p><strong>Obsazenost:</strong> {$term->obsazeno} / {$term->max_pocet_prihlasenych}</p>
-<p><strong>Poznámka:</strong> {$term->poznamka ?: 'Bez poznámky.'}</p>
+<p><strong>Poznámka:</strong> <span class="term-note">{$term->poznamka === '' ? 'Bez poznámky.' : $term->poznamka}</span></p>
 {if $term->datum_cas <= $now}
     <p>Termín již proběhl.</p>
 {elseif $user->isInRole('student')}
     <p n:if="$term->zapsan" class="enrolled">Na tento termín jste přihlášeni.</p>
     {if !$term->zapsan && $term->obsazeno >= $term->max_pocet_prihlasenych}
         <p>Termín je plně obsazen.</p>
+    {elseif $hasOtherTerm}
+        <p>Z tohoto předmětu už máte zapsaný jiný platný termín. Chcete-li změnit termín, nejdřív se z něj odhlaste.</p>
     {else}
         {control registrationForm}
     {/if}

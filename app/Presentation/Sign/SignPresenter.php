@@ -2,11 +2,11 @@
 
 namespace App\Presentation\Sign;
 
+use App\Presentation\BasePresenter;
 use Nette\Application\UI\Form;
-use Nette\Application\UI\Presenter;
 use Nette\Security\AuthenticationException;
 
-final class SignPresenter extends Presenter
+final class SignPresenter extends BasePresenter
 {
     public function actionIn(): void
     {
@@ -17,12 +17,14 @@ final class SignPresenter extends Presenter
 
     protected function createComponentSignInForm(): Form
     {
-        $form = new Form;
-        $form->addProtection();
-        $form->addSelect('role', 'Typ účtu:', ['student' => 'Student', 'pedagog' => 'Pedagog']);
+        $form = $this->protectedForm();
+        $form->addSelect('role', 'Typ účtu:', ['student' => 'Student', 'pedagog' => 'Pedagog'])
+            ->setRequired('Vyberte typ účtu.');
         $form->addText('username', 'Přihlašovací jméno:')->setRequired('Vyplňte přihlašovací jméno.')
+            ->addRule(Form::MaxLength, 'Přihlašovací jméno může mít nejvýše %d znaků.', 20)
             ->setHtmlAttribute('autocomplete', 'username');
         $form->addPassword('password', 'Heslo:')->setRequired('Vyplňte heslo.')
+            ->addRule(Form::MaxLength, 'Heslo může mít nejvýše %d znaků.', 255)
             ->setHtmlAttribute('autocomplete', 'current-password');
         $form->addSubmit('send', 'Přihlásit se');
         $form->onSuccess[] = $this->signInFormSucceeded(...);

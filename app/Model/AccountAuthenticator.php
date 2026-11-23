@@ -23,6 +23,7 @@ final class AccountAuthenticator implements Authenticator
             throw new AuthenticationException('Zkontrolujte typ účtu, přihlašovací jméno a heslo.');
         }
 
+        $code = $role === 'student' ? $account->kod_studenta : $account->kod_pedagoga;
         return new SimpleIdentity($role . ':' . $code, [$role], [
             'code' => $code,
             'name' => $account->jmeno . ' ' . $account->prijmeni,

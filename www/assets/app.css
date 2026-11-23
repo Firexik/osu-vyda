@@ -35,6 +35,8 @@ button:hover, input[type=submit]:hover, .button:hover { background: #466386; col
 :focus-visible { outline: 2px solid #b3d0f5; outline-offset: 3px; }
 .flash { padding: 10px 14px; border: 1px solid #587151; background: #2d3e2a; }
 .error, ul.error { color: #ffb8b0; }
+.flash.error { background: #412b2b; border-color: #99625e; }
+.term-note { white-space: pre-wrap; overflow-wrap: anywhere; }
 .enrolled { color: #a9d79d; }
 .note { color: #b7c0cc; font-size: 13px; }
 @media (max-width: 650px) {

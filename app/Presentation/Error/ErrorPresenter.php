@@ -13,8 +13,9 @@ final class ErrorPresenter extends BasePresenter
     {
         $this->template->status = $exception instanceof BadRequestException ? $exception->getCode() : 500;
         $this->template->message = match ($this->template->status) {
+            400 => 'Požadavek není platný. Vraťte se na přehled a akci zkuste znovu.',
             403 => 'K této stránce nemáte přístup.',
-            404 => 'Tato stránka nebo termín neexistuje.',
+            404 => 'Tato stránka nebo termín už nejsou dostupné.',
             default => 'Stránku se nepodařilo načíst. Zkuste to prosím později.',
         };
     }

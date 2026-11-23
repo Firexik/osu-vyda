@@ -15,8 +15,7 @@ if (($argv[1] ?? '') === '--enroll') {
     try {
         (new TermFacade($db))->enroll((int) $argv[2], $argv[3]);
         echo 'enrolled';
-    } catch (RuntimeException $e) {
-        if (get_class($e) !== RuntimeException::class) { throw $e; }
+    } catch (DomainException $e) {
         echo 'rejected: ' . $e->getMessage();
     }
     exit;
@@ -46,8 +45,7 @@ function check(bool $condition, string $message): void
 
 function rejected(callable $action, string $message): void
 {
-    try { $action(); } catch (Exception $e) {
-        if (get_class($e) !== RuntimeException::class && !$e instanceof Nette\Security\AuthenticationException) { throw $e; }
+    try { $action(); } catch (DomainException | Nette\Security\AuthenticationException) {
         check(true, $message); return;
     }
     throw new RuntimeException('Expected rejection: ' . $message);
@@ -218,6 +216,12 @@ try {
         $page = request($base . $route, $runtime . '/guest.cookie');
         check($page['status'] === 302 && str_contains($page['headers'], '/prihlaseni'), "Guest blocked $route");
     }
+    $page = request($base . '/prihlaseni', $studentCookie);
+    $form = fields($page['body'], 'frm-signInForm') + ['role' => 'student'];
+    $empty = request($base . '/prihlaseni', $studentCookie, $form);
+    check($empty['status'] === 200 && str_contains($empty['body'], 'Vyplňte přihlašovací jméno.'), 'Empty login shows a Czech message');
+    $wrong = request($base . '/prihlaseni', $studentCookie, array_replace($form, ['username' => 'st001', 'password' => 'wrong']));
+    check($wrong['status'] === 200 && str_contains($wrong['body'], 'Nesprávný typ účtu'), 'Wrong login can be corrected');
     login($base, $studentCookie, 'student', 'st001');
     check(str_contains(request($base . '/predmety', $studentCookie)['body'], 'Webové a databázové aplikace'), 'Student course page renders');
     $studentTerms = request($base . '/terminy', $studentCookie);
@@ -226,29 +230,73 @@ try {
         check(request($base . $route, $studentCookie)['status'] === 403, "Student cannot manage terms $route");
     }
     check(request($base . '/terminy/7', $studentCookie)['status'] === 404, 'HTTP unassigned course blocked');
+    $otherTerm = request($base . '/terminy/2', $studentCookie);
+    check(str_contains($otherTerm['body'], 'jiný platný termín') && !str_contains($otherTerm['body'], 'frm-registrationForm'), 'Second term of a course explains why enrollment is unavailable');
     $detail = request($base . '/terminy/3', $studentCookie);
     $form = fields($detail['body'], 'frm-registrationForm');
     $enroll = request($base . '/terminy/3', $studentCookie, $form);
     check($enroll['status'] === 303, 'HTTP enrollment succeeds');
+    $repeatedEnrollment = request($base . '/terminy/3', $studentCookie, $form);
+    check($repeatedEnrollment['status'] === 303 && str_contains($repeatedEnrollment['headers'], '/terminy/3?'), 'Repeated enrollment returns to the current term');
     $detail = request($base . '/terminy/3', $studentCookie);
-    $cancel = request($base . '/terminy/3', $studentCookie, fields($detail['body'], 'frm-registrationForm'));
+    $cancelForm = fields($detail['body'], 'frm-registrationForm');
+    check($cancelForm['operation'] === 'cancel', 'Refused repeated enrollment leaves a working cancel button');
+    $cancel = request($base . '/terminy/3', $studentCookie, $cancelForm);
     check($cancel['status'] === 303, 'HTTP cancellation succeeds');
+    check(request($base . '/terminy/3', $studentCookie, $cancelForm)['status'] === 303
+        && !(bool) $db->fetchField('SELECT 1 FROM zapsane_terminy WHERE id_terminu = 3 AND kod_studenta = ?', 'st001'), 'Repeated cancellation does not enroll again');
     login($base, $teacherCookie, 'pedagog', 'p001');
     $page = request($base . '/terminy/novy', $teacherCookie);
     $form = array_replace(fields($page['body'], 'frm-termForm'), ['zkratka_predmetu' => 'ALG2', 'zkratka_mistnosti' => 'A101',
         'datum_cas' => (new DateTimeImmutable('+25 days'))->format('Y-m-d\TH:i'), 'max_pocet_prihlasenych' => 5, 'poznamka' => 'HTTP created']);
+    $spring = new DateTimeImmutable('last sunday of march ' . ((int) date('Y') + 1));
+    $invalid = [
+        ['zkratka_predmetu', '', 'Vyberte předmět.'],
+        ['zkratka_mistnosti', '', 'Vyberte místnost.'],
+        ['max_pocet_prihlasenych', 0, 'Počet musí být mezi'],
+        ['max_pocet_prihlasenych', -2, 'Počet musí být mezi'],
+        ['max_pocet_prihlasenych', '1.5', 'jako celé číslo'],
+        ['max_pocet_prihlasenych', str_repeat('9', 30), 'jako celé číslo'],
+        ['max_pocet_prihlasenych', 25, 'nesmí překročit kapacitu místnosti'],
+        ['datum_cas', '', 'Zadejte platné datum a čas.'],
+        ['datum_cas', (new DateTimeImmutable('-1 day'))->format('Y-m-d\TH:i'), 'Termín musí být v budoucnosti'],
+        ['datum_cas', $spring->format('Y-m-d') . 'T02:30', 'Zadejte platné datum a čas.'],
+        ['datum_cas', '10000-01-01T10:00', 'Zadejte platné datum a čas.'],
+        ['poznamka', str_repeat('ě', 256), 'Poznámka může mít nejvýše 255 znaků.'],
+    ];
+    foreach ($invalid as [$field, $value, $message]) {
+        $result = request($base . '/terminy/novy', $teacherCookie, array_replace($form, [$field => $value]));
+        check($result['status'] === 200 && str_contains($result['body'], $message), "Invalid $field rejected: $message (HTTP {$result['status']})");
+    }
+    check((int) $db->fetchField('SELECT COUNT(*) FROM vypsane_terminy') === 10, 'Invalid forms wrote no new terms');
     $created = request($base . '/terminy/novy', $teacherCookie, $form);
     check($created['status'] === 303, 'HTTP create term succeeds');
     $newId = (int) $db->fetchField('SELECT id_terminu FROM vypsane_terminy WHERE poznamka=?', 'HTTP created');
     check($newId > 0, 'HTTP created term persisted');
+    $duplicate = request($base . '/terminy/novy', $teacherCookie, $form);
+    check($duplicate['status'] === 200 && str_contains($duplicate['body'], 'Stejný termín už máte vypsaný')
+        && (int) $db->fetchField('SELECT COUNT(*) FROM vypsane_terminy WHERE poznamka = ?', 'HTTP created') === 1, 'Repeated save creates only one term');
     $edit = request($base . "/terminy/$newId/upravit", $teacherCookie);
+    $oldDelete = fields(request($base . "/terminy/$newId/smazat", $teacherCookie)['body'], 'frm-deleteForm');
+    $oldRegistration = fields(request($base . "/terminy/$newId", $studentCookie)['body'], 'frm-registrationForm');
+    $note = str_repeat('ě', 249) . "\n<12 &";
     $form = array_replace(fields($edit['body'], 'frm-termForm'), ['zkratka_predmetu' => 'ALG2', 'zkratka_mistnosti' => 'A101',
-        'datum_cas' => (new DateTimeImmutable('+26 days'))->format('Y-m-d\TH:i'), 'max_pocet_prihlasenych' => 6, 'poznamka' => 'HTTP edited']);
+        'datum_cas' => (new DateTimeImmutable('+26 days'))->format('Y-m-d\TH:i'), 'max_pocet_prihlasenych' => 6, 'poznamka' => $note]);
     check(request($base . "/terminy/$newId/upravit", $teacherCookie, $form)['status'] === 303, 'HTTP edit term succeeds');
-    check($db->fetchField('SELECT poznamka FROM vypsane_terminy WHERE id_terminu=?', $newId) === 'HTTP edited', 'HTTP edit persisted');
+    check($db->fetchField('SELECT poznamka FROM vypsane_terminy WHERE id_terminu=?', $newId) === $note, '255-character note with diacritics and line break stored');
+    $detail = request($base . "/terminy/$newId", $studentCookie);
+    check(str_contains($detail['body'], '&lt;12 &amp;'), 'Angle bracket and ampersand display as text');
+    $stale = request($base . "/terminy/$newId/upravit", $teacherCookie, array_replace($form, ['poznamka' => 'Stale edit']));
+    check($stale['status'] === 200 && str_contains($stale['body'], 'Termín se mezitím změnil.')
+        && $db->fetchField('SELECT poznamka FROM vypsane_terminy WHERE id_terminu = ?', $newId) === $note, 'Stale edit cannot overwrite a newer term');
+    $stale = request($base . "/terminy/$newId", $studentCookie, $oldRegistration);
+    check($stale['status'] === 303 && !(bool) $db->fetchField('SELECT 1 FROM zapsane_terminy WHERE id_terminu = ?', $newId), 'Stale details cannot enroll in a moved term');
+    $stale = request($base . "/terminy/$newId/smazat", $teacherCookie, $oldDelete);
+    check($stale['status'] === 303 && (bool) $db->fetchField('SELECT 1 FROM vypsane_terminy WHERE id_terminu = ?', $newId), 'Stale confirmation cannot delete an edited term');
     $delete = request($base . "/terminy/$newId/smazat", $teacherCookie);
     check(request($base . "/terminy/$newId/smazat", $teacherCookie, fields($delete['body'], 'frm-deleteForm'))['status'] === 303, 'HTTP delete succeeds');
     check(!(bool) $db->fetchField('SELECT 1 FROM vypsane_terminy WHERE id_terminu=?', $newId), 'HTTP deletion persisted');
+    check(request($base . "/terminy/$newId", $studentCookie)['status'] === 404, 'Deleted term link has a normal error page');
     echo "PASS: $checks checks; PHP " . PHP_VERSION . '; database ' . $pdo->getAttribute(PDO::ATTR_SERVER_VERSION) . "\n";
 } finally {
     if (is_resource($server)) { proc_terminate($server); proc_close($server); }

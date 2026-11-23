@@ -10,7 +10,7 @@ abstract class BasePresenter extends Presenter
     protected function startup(): void
     {
         parent::startup();
-        if (!$this->getUser()->isLoggedIn() && $this->getName() !== 'Error') {
+        if (!$this->getUser()->isLoggedIn() && !in_array($this->getName(), ['Sign', 'Error'], true)) {
             $this->redirect('Sign:in');
         }
     }
@@ -32,14 +32,25 @@ abstract class BasePresenter extends Presenter
         }
     }
 
-    protected function createComponentLogoutForm(): Form
+    protected function protectedForm(): Form
     {
         $form = new Form;
-        $form->addProtection();
+        $message = 'Platnost formuláře vypršela. Zkuste to z aktuální stránky.';
+        $form->addProtection($message)->setRequired($message);
+        return $form;
+    }
+
+    protected function createComponentLogoutForm(): Form
+    {
+        $form = $this->protectedForm();
         $form->addSubmit('send', 'Odhlásit se');
         $form->onSuccess[] = function (): void {
             $this->getUser()->logout(true);
             $this->redirect('Sign:in');
+        };
+        $form->onError[] = function (Form $form): void {
+            $this->flashMessage($form->getErrors()[0], 'error');
+            $this->redirect(':Term:default');
         };
         return $form;
     }

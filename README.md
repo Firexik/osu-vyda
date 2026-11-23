@@ -45,3 +45,9 @@ Ověřeno 10. 11. 2026 na PHP 8.2.12 a MariaDB 10.4.32: syntaxe PHP a Latte, 40 
 Dne 11. 11. 2026 bylo ověřeno všech 83 kontrol v `tests/requirements.php`: ukázkové účty obou rolí, přiřazené předměty, správa termínů, oprávnění, duplicity a kapacity, odhlášení, souběžné zápisy a skutečné webové formuláře. Funkční rozpor s aktuálním zadáním nebyl nalezen. Doplněno bylo aktualizované zadání a chybějící odůvodnění změn databáze.
 
 Test spusťte příkazem `php tests/requirements.php` proti lokálnímu MySQL/MariaDB serveru na portu 33077. Port a účet lze nastavit pomocí `VYDA_TEST_PORT`, `VYDA_TEST_USER` a `VYDA_TEST_PASSWORD`. Skript používá vlastní náhodně pojmenovanou databázi a izolovanou kopii webu v dočasné složce; databázi aplikace ani místní konfiguraci nemění. Podrobnosti a požadavky testu jsou v [podkladech k obhajobě](docs/obhajoba.md).
+
+Dne 23. 11. 2026 prošlo 108 kontrol na PHP 8.2 a 8.5 s MariaDB. Nové případy zahrnují neplatné datum, chybnou kapacitu, dlouhou poznámku, opakované odeslání a formulář otevřený před změnou termínu. Vybrané případy byly ověřeny také v prohlížeči.
+
+Na běžném XAMPP nastavte v PowerShellu `$env:VYDA_TEST_PORT = '3306'` a spusťte `php tests/requirements.php`.
+
+Při ruční zkoušce se přihlaste jako `p001`, vyberte místnost A101 a zkuste kapacitu 25. Po opravě uložte formulář a zkuste vypsat stejný termín znovu. Ve dvou kartách otevřete jeho úpravu. V jedné změňte poznámku a uložte ji, z druhé zkuste odeslat původní formulář. Aplikace nabídne načtení aktuálních údajů. Ukázkové termíny postupně proběhnou. Pro ukázku s čerstvými termíny připravte prázdnou databázi podle postupu výše.
