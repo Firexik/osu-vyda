@@ -1,0 +1,21 @@
+application:
+    mapping: App\Presentation\*\**Presenter
+
+routing:
+    routes:
+        '': Sign:in
+        index.php: Sign:in
+        brigady: Student:default
+        zmena-hesla: Student:password
+
+session:
+    name: VYDAGroupWork
+
+database:
+    dsn: 'mysql:host=127.0.0.1;dbname=vyda_groupwork;charset=utf8mb4'
+    user: root
+    password: ''
+
+services:
+    security.passwords: Nette\Security\Passwords(::PASSWORD_ARGON2ID)
+    - App\Model\StudentAccounts

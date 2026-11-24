@@ -1,0 +1,31 @@
+{block title}Moje brigády{/block}
+
+{block content}
+{include 'header.latte'}
+<section class="card">
+    <h1>{include title}</h1>
+    {if $jobs}
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Brigáda</th>
+                        <th scope="col">Od</th>
+                        <th scope="col">Do</th>
+                        <th scope="col" class="amount">Odměna</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr n:foreach="$jobs as $job">
+                        <td>{$job->name}</td>
+                        <td>{$job->date_from|date:'j. n. Y'}</td>
+                        <td>{$job->date_to|date:'j. n. Y'}</td>
+                        <td class="amount">{$job->sallary|number:2, ',', ' '}&nbsp;Kč</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    {else}
+        <p class="muted">Zatím nemáte žádné brigády.</p>
+    {/if}
+</section>

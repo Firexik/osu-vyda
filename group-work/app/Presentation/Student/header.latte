@@ -1,0 +1,17 @@
+<header class="card student-header">
+    <div>
+        <strong>{$student['name']}</strong>
+        <div class="muted">{$student['email']}</div>
+    </div>
+    <nav class="actions" aria-label="Účet studenta">
+        {if $presenter->isLinkCurrent('Student:password')}
+            <a n:href="Student:default" class="button">Moje brigády</a>
+        {else}
+            <a n:href="Student:password" class="button">Změna hesla</a>
+        {/if}
+        <form n:name="logoutForm">
+            <p n:foreach="$form->getErrors() as $error" class="message error" role="alert">{$error}</p>
+            <button n:name="send" class="button secondary">{$form['send']->getCaption()}</button>
+        </form>
+    </nav>
+</header>

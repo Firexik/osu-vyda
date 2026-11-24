@@ -1,0 +1,100 @@
+:root {
+    color-scheme: light;
+    font: 16px/1.5 system-ui, sans-serif;
+    color: #18263c;
+    background: #f3f6fb;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+
+.container {
+    width: min(100% - 2rem, 54rem);
+    margin: clamp(1rem, 6vw, 3.5rem) auto;
+}
+
+.card {
+    padding: clamp(1rem, 4vw, 2rem);
+    background: #fff;
+    border: 1px solid #dce4ef;
+    border-radius: .75rem;
+}
+
+.form-card {
+    max-width: 28rem;
+    margin-inline: auto;
+}
+
+h1 {
+    margin: 0 0 1.25rem;
+    font-size: 1.65rem;
+    line-height: 1.25;
+}
+
+.fields {
+    display: grid;
+    gap: 1rem;
+}
+
+.fields label {
+    display: block;
+    margin-bottom: .3rem;
+    font-weight: 600;
+}
+
+.fields input {
+    width: 100%;
+    padding: .65rem .75rem;
+    border: 1px solid #8797af;
+    border-radius: .45rem;
+    font: inherit;
+}
+
+.fields .button { justify-self: start; }
+
+.button {
+    display: inline-block;
+    padding: .55rem .9rem;
+    border: 1px solid transparent;
+    border-radius: .45rem;
+    background: #2156b6;
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.button:hover { background: #19448f; }
+.button.secondary { background: #fff; border-color: #8797af; color: #22354f; }
+.button.secondary:hover { background: #eef2f8; }
+
+:focus-visible {
+    outline: 2px solid #2156b6;
+    outline-offset: 2px;
+}
+
+.student-header, .actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .75rem;
+}
+
+.student-header {
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.muted { color: #4b5d75; overflow-wrap: anywhere; }
+
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: .65rem .75rem; text-align: left; border-bottom: 1px solid #dce4ef; }
+th { background: #f3f6fb; }
+td:not(:first-child) { white-space: nowrap; }
+.amount { text-align: right; }
+
+.message { margin: 0; padding: .65rem .8rem; border-radius: .45rem; }
+.message.error { background: #fff0ef; color: #8f2019; }
+.message.success { margin-bottom: 1rem; background: #e4f5eb; color: #175a34; }

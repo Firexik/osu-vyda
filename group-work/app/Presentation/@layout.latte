@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{include title} | Studentské brigády</title>
+    <link rel="stylesheet" href="{$basePath}/app.css">
+</head>
+<body>
+    <main class="container">
+        <p n:foreach="$flashes as $flash" class="message success" role="status">{$flash->message}</p>
+        {include content}
+    </main>
+</body>
+</html>

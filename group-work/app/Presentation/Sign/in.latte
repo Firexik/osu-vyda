@@ -1,0 +1,18 @@
+{block title}Přihlášení studenta{/block}
+
+{block content}
+<section class="card form-card">
+    <h1>{include title}</h1>
+    <form n:name="signInForm" class="fields">
+        <p n:foreach="$form->getErrors() as $error" class="message error" role="alert">{$error}</p>
+        <div>
+            {label email /}
+            <input n:name="email" placeholder="student@example.test">
+        </div>
+        <div>
+            {label password /}
+            <input n:name="password">
+        </div>
+        <button n:name="send" class="button">{$form['send']->getCaption()}</button>
+    </form>
+</section>
