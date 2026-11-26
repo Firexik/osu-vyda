@@ -120,8 +120,13 @@ final class TermPresenter extends BasePresenter
             $form['datum_cas']->addError('Zadejte platné datum a čas.');
             return;
         }
-        $values = (array) $data;
-        unset($values['version']);
+        $values = [
+            'zkratka_predmetu' => $data->zkratka_predmetu,
+            'datum_cas' => $data->datum_cas,
+            'zkratka_mistnosti' => $data->zkratka_mistnosti,
+            'max_pocet_prihlasenych' => $data->max_pocet_prihlasenych,
+            'poznamka' => $data->poznamka,
+        ];
         try {
             $this->terms->save($this->term?->id_terminu, $this->accountCode(), $values, $data->version ?? null);
         } catch (\DomainException $e) {
@@ -193,7 +198,8 @@ final class TermPresenter extends BasePresenter
     private function addVersion(Form $form): void
     {
         $form->addHidden('version')->setDefaultValue($this->terms->version($this->term))
-            ->setRequired('Otevřete aktuální formulář a zkuste to znovu.');
+            ->setRequired('Otevřete aktuální formulář a zkuste to znovu.')
+            ->addRule(Form::Pattern, 'Otevřete aktuální formulář a zkuste to znovu.', '[a-f0-9]{64}');
     }
 
     private function loadTerm(int $id): void

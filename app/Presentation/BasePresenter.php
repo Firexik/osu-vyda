@@ -37,6 +37,17 @@ abstract class BasePresenter extends Presenter
         $form = new Form;
         $message = 'Platnost formuláře vypršela. Zkuste to z aktuální stránky.';
         $form->addProtection($message)->setRequired($message);
+        $form->onValidate[] = function (Form $form): void {
+            // Povinné hodnoty musí přijít v požadavku, nestačí výchozí hodnota formuláře.
+            foreach ($form->getControls() as $control) {
+                if (!$control->isRequired() || $control->isDisabled() || $control->getErrors()) {
+                    continue;
+                }
+                if ($form->getHttpData(Form::DataText, $control->getHtmlName()) === null) {
+                    $control->addError('Formulář není úplný. Načtěte stránku znovu.');
+                }
+            }
+        };
         return $form;
     }
 

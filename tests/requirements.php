@@ -222,6 +222,10 @@ try {
     check($empty['status'] === 200 && str_contains($empty['body'], 'Vyplňte přihlašovací jméno.'), 'Empty login shows a Czech message');
     $wrong = request($base . '/prihlaseni', $studentCookie, array_replace($form, ['username' => 'st001', 'password' => 'wrong']));
     check($wrong['status'] === 200 && str_contains($wrong['body'], 'Nesprávný typ účtu'), 'Wrong login can be corrected');
+    $missingRole = request($base . '/prihlaseni', $studentCookie, array_replace($form, [
+        'role' => null, 'username' => 'st001', 'password' => 'Vyda2026!',
+    ]));
+    check($missingRole['status'] === 200, 'Login requires an account type in the request');
     login($base, $studentCookie, 'student', 'st001');
     check(str_contains(request($base . '/predmety', $studentCookie)['body'], 'Webové a databázové aplikace'), 'Student course page renders');
     $studentTerms = request($base . '/terminy', $studentCookie);
@@ -234,6 +238,12 @@ try {
     check(str_contains($otherTerm['body'], 'jiný platný termín') && !str_contains($otherTerm['body'], 'frm-registrationForm'), 'Second term of a course explains why enrollment is unavailable');
     $detail = request($base . '/terminy/3', $studentCookie);
     $form = fields($detail['body'], 'frm-registrationForm');
+    foreach (['operation', 'version', '_token_'] as $field) {
+        $incomplete = request($base . '/terminy/3', $studentCookie, array_replace($form, [$field => null]));
+        check($incomplete['status'] === 303 && str_contains($incomplete['headers'], '/terminy/3?')
+            && !(bool) $db->fetchField('SELECT 1 FROM zapsane_terminy WHERE id_terminu = 3 AND kod_studenta = ?', 'st001'),
+            "Enrollment without $field has no effect");
+    }
     $enroll = request($base . '/terminy/3', $studentCookie, $form);
     check($enroll['status'] === 303, 'HTTP enrollment succeeds');
     $repeatedEnrollment = request($base . '/terminy/3', $studentCookie, $form);
@@ -251,6 +261,11 @@ try {
         'datum_cas' => (new DateTimeImmutable('+25 days'))->format('Y-m-d\TH:i'), 'max_pocet_prihlasenych' => 5, 'poznamka' => 'HTTP created']);
     $spring = new DateTimeImmutable('last sunday of march ' . ((int) date('Y') + 1));
     $invalid = [
+        ['zkratka_predmetu', null, 'Vyberte předmět.'],
+        ['zkratka_mistnosti', null, 'Vyberte místnost.'],
+        ['max_pocet_prihlasenych', null, 'Vyplňte počet studentů.'],
+        ['datum_cas', null, 'Zadejte platné datum a čas.'],
+        ['_token_', null, 'Platnost formuláře vypršela.'],
         ['zkratka_predmetu', '', 'Vyberte předmět.'],
         ['zkratka_mistnosti', '', 'Vyberte místnost.'],
         ['max_pocet_prihlasenych', 0, 'Počet musí být mezi'],
@@ -282,6 +297,10 @@ try {
     $note = str_repeat('ě', 249) . "\n<12 &";
     $form = array_replace(fields($edit['body'], 'frm-termForm'), ['zkratka_predmetu' => 'ALG2', 'zkratka_mistnosti' => 'A101',
         'datum_cas' => (new DateTimeImmutable('+26 days'))->format('Y-m-d\TH:i'), 'max_pocet_prihlasenych' => 6, 'poznamka' => $note]);
+    $incomplete = request($base . "/terminy/$newId/upravit", $teacherCookie, array_replace($form, ['version' => null]));
+    check($incomplete['status'] === 200 && str_contains($incomplete['body'], 'Otevřete aktuální formulář')
+        && $db->fetchField('SELECT poznamka FROM vypsane_terminy WHERE id_terminu = ?', $newId) === 'HTTP created',
+        'Edit without a term version keeps the saved data');
     check(request($base . "/terminy/$newId/upravit", $teacherCookie, $form)['status'] === 303, 'HTTP edit term succeeds');
     check($db->fetchField('SELECT poznamka FROM vypsane_terminy WHERE id_terminu=?', $newId) === $note, '255-character note with diacritics and line break stored');
     $detail = request($base . "/terminy/$newId", $studentCookie);
@@ -294,6 +313,11 @@ try {
     $stale = request($base . "/terminy/$newId/smazat", $teacherCookie, $oldDelete);
     check($stale['status'] === 303 && (bool) $db->fetchField('SELECT 1 FROM vypsane_terminy WHERE id_terminu = ?', $newId), 'Stale confirmation cannot delete an edited term');
     $delete = request($base . "/terminy/$newId/smazat", $teacherCookie);
+    $incomplete = request($base . "/terminy/$newId/smazat", $teacherCookie,
+        array_replace(fields($delete['body'], 'frm-deleteForm'), ['version' => null]));
+    check($incomplete['status'] === 200 && str_contains($incomplete['body'], 'Otevřete aktuální formulář')
+        && (bool) $db->fetchField('SELECT 1 FROM vypsane_terminy WHERE id_terminu = ?', $newId),
+        'Delete without a term version keeps the term');
     check(request($base . "/terminy/$newId/smazat", $teacherCookie, fields($delete['body'], 'frm-deleteForm'))['status'] === 303, 'HTTP delete succeeds');
     check(!(bool) $db->fetchField('SELECT 1 FROM vypsane_terminy WHERE id_terminu=?', $newId), 'HTTP deletion persisted');
     check(request($base . "/terminy/$newId", $studentCookie)['status'] === 404, 'Deleted term link has a normal error page');
